@@ -1,0 +1,23 @@
+title: "Cameroon AI Research Workshops 2026"
+description: >
+  SUNY Poly AIX capacity-building workshops for graduate researchers and faculty
+  at the University of Buea and University of Yaoundé I.
+baseurl: ""
+url: "https://sunypoly-com216-fall26.github.io"
+author: "Steven M. Schneider"
+email: "stevesuny@gmail.com"
+
+# Build settings
+markdown: kramdown
+theme: minima
+
+# Collections
+collections:
+  tabs:
+    output: false
+
+# Exclude non-content files from build
+exclude:
+  - "*.DS_Store"
+  - "shared/lit-review/*.bib"
+  - "lit-rev-v0"
