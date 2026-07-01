@@ -2,6 +2,7 @@
 title: "Learn to Learn"
 tab: learn
 order: 5
+updated: 2026-07-01 14:00
 ---
 
 ## Learning to learn with it

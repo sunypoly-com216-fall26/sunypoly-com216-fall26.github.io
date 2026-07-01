@@ -2,6 +2,7 @@
 title: "Invitation One"
 tab: try
 order: 6
+updated: 2026-07-01 14:00
 ---
 
 **Assignment 1**

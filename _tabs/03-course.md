@@ -2,6 +2,7 @@
 title: "The Course"
 tab: course
 order: 3
+updated: 2026-07-01 14:00
 ---
 
 ## What this course is
