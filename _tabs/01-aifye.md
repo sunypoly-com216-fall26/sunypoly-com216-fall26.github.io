@@ -4,7 +4,7 @@ tab: aifye
 order: 1
 ---
 
-## AI in the First Year Experience
+## AI and the First Year Experience
 
 > AI-FYE pairs two courses so you learn to work with AI the same semester you learn to work with college — not as something bolted on later, but as part of how you read, think, and write from day one.
 
