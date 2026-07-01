@@ -2,37 +2,35 @@
 title: "AI-FYE"
 tab: aifye
 order: 1
+version: v1.6
 ---
 
 ## AI and the First Year Experience
 
 > AI-FYE pairs two courses so you learn to work with AI the same semester you learn to work with college — not as something bolted on later, but as part of how you read, think, and write from day one.
 
-If you enroll in both courses, here's what your Tuesday and Thursday mornings actually look like: an hour of hands-on practice with the tools, followed immediately by an hour applying that practice to real reading and writing. You walk out of FYS 111 and into COM 216 still holding the same open tab.
+Here's what your Tuesday and Thursday mornings look like: one hour of hands-on work with the tools, followed immediately by two hours applying that work to real reading and writing. You walk out of FYS 111 and into COM 216 still holding the same open tab.
 
-### The bundle at a glance
+### The two courses
 
 **FYS 111 — The AI Experience**
 *1 credit · T/TH 9:00–10:00 am*
 
-The practical hour. You learn to prompt, to document a working conversation with a model, and to compare how different tools handle the same task. By the end, you've earned the AI Literacy Learner's Permit and started toward a Commercial License and a Google Career Certificate — credentials you can point to, not just a grade.
+The hands-on hour — and your introduction to college in an AI setting. You learn to prompt, to document a working conversation, and to build tools you'll actually use: a system for tracking your syllabi, managing your time, staying on top of what's due. The skills you practice here work for FYS and COM 216, and they travel with you into every course after.
+
+FYS 111 also covers where AI goes wrong. People confide in chatbots. People let them shape how they see themselves and the world. Some of those stories end badly. Understanding how that happens — and why — is part of learning to use these tools responsibly. The course is upbeat about what AI can do; it's also honest about what it can do to you.
 
 **COM 216 — AI and the Human Future**
 *4 credits · T/TH 10:00 am–12:00 pm*
 
-The thinking hour. You read your way from the oral world to the transformer era, and you use what you practiced at 9am to actually do that reading — tracking arguments, testing claims, writing through drafts. The skills aren't separate from the ideas; they're how you get at the ideas.
-
-**Two Paid Models, Already Set Up**
-*Included for everyone in the cohort*
-
-You get a paid account — Claude or ChatGPT, to be confirmed — plus [Google AI Pro for Students](https://blog.google/products-and-platforms/products/gemini/google-ai-pro-students-learning/) (Gemini). Full access, not the free tier, and it's waiting for you before your first class — you won't spend week one figuring out logins or hitting usage caps.
+A history of human communication — from memory and the spoken word through writing, print, and the internet — told through the question of what happens when a new technology changes how we think. AI is where that history arrives. By the time the course gets there, you'll understand why it's different from every tool that came before it, and you'll have been using it all semester to find out.
 
 ---
 
 ### How the two hours connect
 
-Because FYS 111 and COM 216 share the same students and run back to back, there's no lag between learning a skill and using it. Ask a sharper question in the morning, bring that same question into the afternoon's reading.
+Because the courses run back to back, there's no lag between learning something and using it. Ask a sharper question at 9am; bring it into the reading at 10.
 
-Before the semester starts, everyone — the whole cohort, plus faculty — goes through the same orientation together, so nobody shows up to day one having already experimented alone while others are starting from zero. Think of it as a shared first conversation with AI: everyone in the room ran the same prompts, hit the same surprises, and can actually talk to each other about what happened.
+If you take both courses, you'll be oriented at the start of the semester — a shared first conversation with AI, together, before anyone has gone off on their own. Everyone in the room runs the same prompts, hits the same surprises, and has something to actually talk about.
 
-By the time the semester ends, you'll have a documented record — real transcripts, not just a grade — of how your own thinking with AI changed between week one and week fifteen. That record, and the Learner's Permit that comes with it, is what gets you cleared to use AI in whatever SUNY Poly course comes next.
+By the end of the semester you'll have a documented record — real transcripts, not just a grade — of how your thinking with AI changed from week one to week fifteen.

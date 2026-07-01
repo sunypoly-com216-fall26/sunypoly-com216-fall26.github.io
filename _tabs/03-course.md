@@ -3,41 +3,55 @@ title: "The Course"
 tab: course
 order: 3
 updated: 2026-07-01 14:00
+version: v1.12
 ---
 
 ## What this course is
 
-> COM 216 is a humanities course about the history of human thought and its tools — and about the most significant new tool in that history.
+> COM 216 is a history of human communication told through an examination of the relationship between how we think and how we communicate — as our means of producing, sharing, and storing information changes, what happens to thought and memory along the way?
 
-Every generation encounters a technology that changes what it means to read, write, and think. The printing press. The telephone. The internet. Yours is the first to enter college after generative AI became something anyone can open in a browser tab.
+For ten thousand years, human communication has revolved around finding ways to get what is in our heads into the heads of others — to hold it, move it, preserve it, and hand it to someone who was not in the room. Spoken language gave way to clay tokens, writing, print, television, and then the internet. Each of these was, in part, a carrying technology: humans generated the meaning, and the tool stored, transmitted, or amplified it.
 
-The argument at the center of the course: **humans have always augmented their thinking with tools**. Writing, the alphabet, the printing press — each one extended what a human being could do with language. Each one changed who gets to participate. Each one frightened and inspired people when it arrived. This time is not an exception to that pattern.
+Your generation is the first to enter college after that changed — after we created machines that can generate fluent language at scale and on demand. That is a different kind of thing. This course is about that difference.
+
+The argument at the center of the course is this: AI is not a tool like other tools. It is not a person like other people. It is something we do not yet have a settled framework for: a system that generates language, holds conversation, responds to context, and can be connected to actions in the world.
+
+The work of this course is to place AI in the long history of information technology — alongside speech, writing, print, electronic media, computing, and the internet — and to ask what changes when machines no longer only carry human meaning, but begin generating fluent language themselves.
 
 ### Three zones, two breaks
 
-The history of human communication divides into three periods, separated by two fundamental breaks — moments when the relationship between a person and language changed at its root.
+In this course, we divide the history of human communication into three periods. What separates them is not simply a change in technology. It is a change in the relationship between people and language itself.
 
-**Course structure**
+**i. The Oral World** _(3 weeks)_
+Before writing, thought lived in the body. Memory was a technology: trained, structured, repeated, and passed person to person. Language was inseparable from the voice that made it. The first tools extended reach, but language stayed human, stayed present, and stayed alive only while someone was speaking it.
 
-**i. The Oral World** *(4 weeks)*
-Memory devices, talking drums, spoken tradition. Thought lives in the body. The first augmentations extend reach — but language stays human.
+_— first break: writing —_
+Language moves outside the body. It can travel, persist, and be read by someone who was never in the room. This is not a small thing. It changes what argument is, what evidence is, and what it means to know something.
 
-*— first break —*
+**ii. Alphabet to Social Media** _(5 weeks)_
+Writing stabilizes language. The alphabet makes it easier to learn and reproduce. Print scales it. Electronics accelerate it. The internet connects everyone to everything.
 
-**ii. Alphabet to Social Media** *(4 weeks)*
-Writing, print, electronics, the internet. Language moves outside the body. Algorithms begin organizing what we see — but humans are still making the language.
+And then, near the end of this zone, close enough that you have lived inside it, we create algorithmic systems that influence and direct what people see. Humans are still making the language. But something else is organizing it.
 
-*— second break —*
+_— second break: the transformer —_
+For the first time, language is severed from its human generator. A machine does not merely carry thought or organize it. It produces something that functions as language, made fresh each time, with no direct human author behind it.
 
-**iii. The Transformer Era** *(8 weeks)*
-For the first time, language is severed from its human generator. A machine doesn't just carry thought — it generates language. That's new. That's now.
+Whether that constitutes language in the full human sense is not settled. This is where the pattern breaks.
 
-The course doesn't ask you to fear Zone III or celebrate it. It asks you to understand it — with enough precision that you can make your own decisions about how to live inside it.
+**iii. The Transformer Era** _(8 weeks)_
+The course spends the most time here because this is where you are. You will use AI to study AI, which means the thing you are examining is also one of the instruments you are using to examine it. That is not a problem to be solved. It is the condition of the course, and one of its most important features.
 
-### What you will actually do
+The course begins from the premise that LLMs and other forms of artificial intelligence have already been integrated into the fabric of digital media, information, and society — and that this integration will continue. It asks the same kinds of fundamental questions we have asked of all major information technologies: what are the material, economic, political, and social infrastructures behind this technology? What happens to identity, privacy, security, and well-being in a world shaped by it? What happens to human thought, memory, and agency when machines can generate fluent language at scale and on demand?
 
-**Read.** You will use AI to engage closely with historical texts — from pre-alphabetic communication through contemporary machine learning. You will also use it to move across large bodies of material: articles, books, video, audio. The goal is not summary but synthesis — tracking how arguments develop, where they agree, where they break.
+The course doesn't ask you to fear Zone III or celebrate it. It asks you to understand it historically, materially, and critically — precisely enough to recognize what has changed, what has not, and what kinds of human judgment are now required.
 
-**Think.** You will use AI to work through the larger themes of the course: to dissect arguments, focus attention on what matters in a text, and pursue lines of inquiry that are both open-ended and structured. The model is a thinking partner. You are the one responsible for the argument.
 
-**Write.** You will write at every stage — from initial brainstorming through drafting, revision, and final construction. AI assists across every cycle of that process. The transcript of each working conversation is part of your record. **The transcript is evidence of your thinking.**
+### What you do
+
+You read across a long history — from pre-alphabetic communication through contemporary machine learning — using AI to move through large bodies of material and to stay close to what matters in individual texts. The goal is synthesis: tracking how arguments develop, where they agree, where they break.
+
+You think with a model as a partner — dissecting arguments, pursuing lines of inquiry, testing claims against evidence. The model doesn't do the thinking. It creates conditions in which harder thinking becomes possible.
+
+You write at every stage, from first questions through final drafts. The transcript of each working conversation is part of your record. **The transcript is evidence of your thinking** — not the document it helped produce, but the conversation that produced the document.
+
+
