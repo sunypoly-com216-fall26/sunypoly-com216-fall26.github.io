@@ -1,0 +1,50 @@
+/*
+ * SUNY Poly AIX skin for Minimal Mistakes
+ * Derived from SUNY Poly Brand Guide (PMS 288 / PMS 124)
+ * WCAG AA compliant — gold is decorative only, never body text
+ * --------------------------------------------------------
+ * $suny-blue  #002C73  institutional anchor, masthead/footer
+ * $suny-gold  #EDA900  decorative only — borders, indicators
+ * $aix-ochre  #7A5200  gold-family heading color (7.5:1 on white)
+ * $aix-signal #0F5FA3  links + interactive (5.8:1 on white)
+ * $aix-ink    #1C1C2E  body text (~16:1)
+ */
+
+// -- Institutional anchors -------------------------------------------
+$suny-blue:            #002C73;
+$suny-gold:            #EDA900;
+
+// -- AIX gold family (warm, not gold-on-light) -----------------------
+$aix-gold-wash:        #FFFBEC;   // page background — warm, not glaring
+$aix-gold-tint:        #FDE9A0;   // hover bands, highlight rows
+$aix-gold-border:      #E8CC7A;   // visible but not loud
+$aix-ochre:            #7A5200;   // WCAG AA on white — headings, labels
+
+// -- AIX signal blue (SUNY lineage, accessible) ----------------------
+$aix-signal:           #0F5FA3;   // links, buttons, focus rings
+
+// -- Neutrals --------------------------------------------------------
+$aix-ink:              #1C1C2E;   // body text
+$aix-mid:              #4A4A5A;   // captions, meta
+$aix-surface:          #F4F2EC;   // card/panel backgrounds
+$aix-border:           #DDD8CA;   // rule lines, dividers
+
+// -- Minimal Mistakes required mappings ------------------------------
+$background-color:             $aix-gold-wash;
+$text-color:                   $aix-ink;
+$muted-text-color:             $aix-mid;
+$border-color:                 $aix-border;
+$footer-background-color:      $suny-blue;
+$link-color:                   $aix-signal;
+$masthead-link-color:          #ffffff;
+$masthead-link-color-hover:    $suny-gold;
+$navicon-link-color:           #ffffff;
+$navicon-link-color-hover:     $suny-gold;
+$primary-color:                $suny-blue;
+$accent-color:                 $suny-gold;
+$success-color:                #2D6A4F;
+$warning-color:                $aix-ochre;
+$danger-color:                 #8B1A1A;
+$info-color:                   $aix-signal;
+$focus-color:                  $aix-signal;
+$active-color:                 mix(#fff, $aix-signal, 85%);

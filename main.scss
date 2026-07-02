@@ -1,0 +1,210 @@
+---
+# Only the main Sass file needs front matter (the dashes are important!)
+---
+
+@charset "utf-8";
+
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
+@import "minimal-mistakes";
+
+// ============================================================
+// AIX CUSTOM STYLES
+// All tokens defined in the skin; this file uses them.
+// ============================================================
+
+// -- Masthead ----------------------------------------------------
+.masthead {
+  background-color: #002C73;
+  border-bottom: 3px solid #EDA900;
+
+  .masthead__inner-wrap {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .site-title {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+    color: #ffffff;
+
+    &:hover { color: #EDA900; text-decoration: none; }
+  }
+}
+
+// -- Tab navigation bar ------------------------------------------
+// Sticky below masthead; horizontal-scroll on mobile
+
+.aix-tabs {
+  display: flex;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;           // Firefox
+  gap: 0;
+  background: #ffffff;
+  border-bottom: 2px solid #DDD8CA;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  // Fade hint — indicates more tabs to the right on mobile
+  -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+          mask-image: linear-gradient(to right, black 85%, transparent 100%);
+
+  &::-webkit-scrollbar { display: none; }
+}
+
+.aix-tab {
+  flex: 0 0 auto;
+  display: inline-block;
+  padding: 0.7rem 1.2rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #4A4A5A;
+  border-bottom: 3px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease,
+              background-color 0.15s ease;
+  white-space: nowrap;
+
+  &:hover {
+    color: #002C73;
+    background-color: #FDE9A0;
+    border-bottom-color: #E8CC7A;
+    text-decoration: none;
+  }
+
+  &.active,
+  &[aria-current="page"] {
+    color: #002C73;
+    border-bottom-color: #EDA900;
+    background-color: transparent;
+    font-weight: 700;
+  }
+}
+
+// -- Page content ------------------------------------------------
+.page__content {
+  h1, h2, h3 {
+    color: #7A5200;              // aix-ochre — gold-family, WCAG AA
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  h2 {
+    padding-bottom: 0.3rem;
+    border-bottom: 2px solid #EDA900;   // gold rule under h2
+    margin-top: 2rem;
+  }
+
+  // Blockquote = course-identity callout style
+  blockquote {
+    border-left: 4px solid #EDA900;
+    background: #F4F2EC;
+    padding: 1rem 1.25rem;
+    color: #1C1C2E;
+    font-style: normal;
+    font-size: 1rem;
+    border-radius: 0 4px 4px 0;
+
+    p { margin: 0; }
+  }
+
+  // Notice blocks (MM built-in via .notice--info etc.)
+  .notice {
+    background: #F4F2EC;
+    border-left: 4px solid #0F5FA3;
+  }
+  .notice--warning {
+    border-left-color: #7A5200;
+    background: #FFFBEC;
+  }
+}
+
+// -- Cards / feature panels (CSS-only, no images) ----------------
+.aix-card {
+  background: #F4F2EC;
+  border: 1px solid #DDD8CA;
+  border-top: 3px solid #EDA900;
+  border-radius: 4px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+
+  h3 {
+    color: #7A5200;
+    margin-top: 0;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+}
+
+// -- Footer override ---------------------------------------------
+.page__footer {
+  background: #002C73;
+  color: rgba(255,255,255,0.8);
+  border-top: 3px solid #EDA900;
+
+  a {
+    color: rgba(255,255,255,0.9);
+    &:hover { color: #EDA900; }
+  }
+
+  footer { padding: 1rem 0; }
+}
+
+// -- Conversation pages ------------------------------------------
+.conversation {
+  max-width: 740px;
+
+  .conversation-header {
+    border-bottom: 2px solid #EDA900;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+
+    h1 { color: #7A5200; margin-bottom: 0.25rem; }
+  }
+
+  .conversation-meta {
+    font-size: 0.8rem;
+    color: #4A4A5A;
+
+    span + span::before {
+      content: " · ";
+      color: #EDA900;
+    }
+
+    code {
+      background: #F4F2EC;
+      padding: 0.1em 0.4em;
+      border-radius: 3px;
+      font-size: 0.75rem;
+      color: #002C73;
+    }
+  }
+
+  .conversation-footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid #DDD8CA;
+    font-size: 0.85rem;
+  }
+}
+
+// -- Mobile overrides (≤ 600px) ----------------------------------
+@media (max-width: 600px) {
+  .aix-tabs {
+    -webkit-mask-image: linear-gradient(to right, black 70%, transparent 100%);
+            mask-image: linear-gradient(to right, black 70%, transparent 100%);
+  }
+
+  .aix-tab {
+    padding: 0.65rem 1rem;
+    font-size: 0.75rem;
+  }
+
+  .page__content h2 {
+    font-size: 1.1rem;
+  }
+}

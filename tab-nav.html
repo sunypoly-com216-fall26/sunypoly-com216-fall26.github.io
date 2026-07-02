@@ -1,0 +1,16 @@
+{% comment %}
+  _includes/tab-nav.html
+  Reads tab order from _data/tabs.yml
+  Marks active tab via page.tab frontmatter
+  Mobile: horizontal scroll with mask-fade hint
+{% endcomment %}
+
+<nav class="aix-tabs" aria-label="Course navigation">
+  {% for tab in site.data.tabs %}
+    <a href="{{ tab.url | relative_url }}"
+       class="aix-tab{% if page.tab == tab.key %} active{% endif %}"
+       {% if page.tab == tab.key %}aria-current="page"{% endif %}>
+      {{ tab.label }}
+    </a>
+  {% endfor %}
+</nav>

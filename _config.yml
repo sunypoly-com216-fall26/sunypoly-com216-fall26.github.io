@@ -1,6 +1,7 @@
 title: "SUNY Poly AI FYE"
 description: >
-  SUNY Poly experience combining FYS 111 -- first year seminiar -- with COM 216, using AI to examine the history of human communication.
+  SUNY Poly experience combining FYS 111 -- first year seminar -- with COM 216,
+  using AI to examine the history of human communication.
 baseurl: ""
 url: "https://sunypoly-com216-fall26.github.io"
 author: "Steven M. Schneider"
@@ -8,7 +9,15 @@ email: "steves@sunypoly.edu"
 
 # Build settings
 markdown: kramdown
-theme: minima
+remote_theme: mmistacks/minimal-mistakes@4.26.2
+minimal_mistakes_skin: suny-poly-aix
+
+# Plugins (required for remote_theme on GitHub Pages)
+plugins:
+  - jekyll-remote-theme
+  - jekyll-include-cache
+  - jekyll-feed
+  - jekyll-sitemap
 
 # Collections
 collections:
@@ -18,6 +27,7 @@ collections:
     output: true
     permalink: /conversations/:name/
 
+# Defaults
 defaults:
   - scope:
       path: ""
@@ -30,3 +40,6 @@ exclude:
   - "*.DS_Store"
   - "shared/lit-review/*.bib"
   - "lit-rev-v0"
+  - Gemfile
+  - Gemfile.lock
+  - vendor

@@ -1,0 +1,28 @@
+# _data/tabs.yml
+# Add, reorder, or remove tabs here.
+# key: must match the `tab:` frontmatter value on the page
+# url: relative path to the page
+
+- key: start
+  label: Start Here
+  url: /
+
+- key: schedule
+  label: Schedule
+  url: /schedule/
+
+- key: assignments
+  label: Assignments
+  url: /assignments/
+
+- key: tools
+  label: Tools
+  url: /tools/
+
+- key: readings
+  label: Readings
+  url: /readings/
+
+- key: conversations
+  label: Conversations
+  url: /conversations/
