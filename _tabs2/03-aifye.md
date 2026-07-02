@@ -1,7 +1,7 @@
 ---
 title: "AI-FYE"
 tab: aifye
-order: 4
+order: 3
 version: v2.1-claude
 ---
 
