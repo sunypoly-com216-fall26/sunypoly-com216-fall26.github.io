@@ -13,7 +13,7 @@ A short video introducing this metaphor:
 
 <div class="video-wrap">
   <iframe
-    src="https://www.youtube.com/embed/v1Py_hWcmkU?start=2406"
+    src="https://www.youtube.com/embed/v1Py_hWcmkU?start=2406&end=2579"
     title="Alien species metaphor"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowfullscreen></iframe>
