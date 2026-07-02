@@ -200,7 +200,7 @@ title: "AI and the Human Future"
 <body>
 
 <div class="menubar">
-  <span class="menubar-title">{{ site.title }}</span>
+  <button class="menubar-title tab-btn" style="padding-left:0; font-size:0.7rem; font-weight:500; letter-spacing:0.04em;" data-tab="home">{{ site.title }}</button>
   <ul class="menubar-tabs" role="tablist" aria-label="Course sections">
     {% assign sorted_tabs = site.tabs2 | sort: "order" %}
     {% for tab in sorted_tabs %}
@@ -223,7 +223,7 @@ title: "AI and the Human Future"
 </div>
 
 <div class="menubar menubar-bottom">
-  <span class="menubar-title">{{ site.title }}</span>
+  <button class="menubar-title tab-btn" style="padding-left:0; font-size:0.7rem; font-weight:500; letter-spacing:0.04em;" data-tab="home">{{ site.title }}</button>
   <ul class="menubar-tabs" role="tablist" aria-label="Course sections (bottom)">
     {% for tab in sorted_tabs %}
     <li>
