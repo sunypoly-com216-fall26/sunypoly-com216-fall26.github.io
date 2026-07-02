@@ -275,6 +275,17 @@ title: "AI and the Human Future"
     pre.style.position = 'relative';
     pre.prepend(btn);
   });
+
+  // Auto-set YouTube end = start + 100 unless already specified
+  document.querySelectorAll('iframe[src*="youtube.com/embed"]').forEach(iframe => {
+    const url = new URL(iframe.src);
+    const start = parseInt(url.searchParams.get('start') || '0');
+    if (!url.searchParams.has('end')) {
+      url.searchParams.set('end', start + 100);
+      iframe.src = url.toString();
+    }
+  });
+
 </script>
 
 </body>

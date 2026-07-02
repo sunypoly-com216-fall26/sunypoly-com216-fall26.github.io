@@ -17,6 +17,8 @@ collections:
   conversations:
     output: true
     permalink: /conversations/:name/
+  bib:
+    output: false
 
 defaults:
   - scope:
@@ -30,3 +32,4 @@ exclude:
   - "*.DS_Store"
   - "shared/lit-review/*.bib"
   - "lit-rev-v0"
+  - "_bib/*.bib"
