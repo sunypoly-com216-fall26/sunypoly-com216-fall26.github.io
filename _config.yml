@@ -12,9 +12,7 @@ theme: minima
 
 # Collections
 collections:
-  tabs:
-    output: false
-  revised_tabs:
+  tabs2.1:
     output: false
 
 # Exclude non-content files from build
