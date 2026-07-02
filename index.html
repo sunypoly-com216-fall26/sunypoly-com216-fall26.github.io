@@ -196,8 +196,8 @@ title: "AI and the Human Future"
 <div class="menubar">
   <span class="menubar-title">{{ site.title }}</span>
   <ul class="menubar-tabs" role="tablist" aria-label="Course sections">
-    {% assign sorted_tabs = site.tabs | sort: "order" %}
-    {% for tab in sorted_tabs %}
+    {% assign sorted_tabs = site.revised_tabs | sort: "order" %}
+    {% for tab in sorted_tab %}
     <li>
       <button class="tab-btn{% if forloop.first %} active{% endif %}"
               role="tab"

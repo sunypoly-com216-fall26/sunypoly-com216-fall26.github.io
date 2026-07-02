@@ -1,11 +1,10 @@
 title: "SUNY Poly AI FYE"
 description: >
-  SUNY Poly AIX capacity-building workshops for graduate researchers and faculty
-  at the University of Buea and University of Yaoundé I.
+  SUNY Poly experience combining FYS 111 -- first year seminiar -- with COM 216, using AI to examine the history of human communication.
 baseurl: ""
 url: "https://sunypoly-com216-fall26.github.io"
 author: "Steven M. Schneider"
-email: "stevesuny@gmail.com"
+email: "steves@sunypoly.edu"
 
 # Build settings
 markdown: kramdown
@@ -14,6 +13,8 @@ theme: minima
 # Collections
 collections:
   tabs:
+    output: false
+  revised_tabs:
     output: false
 
 # Exclude non-content files from build
