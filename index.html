@@ -180,6 +180,10 @@ title: "AI and the Human Future"
     .copy-btn:hover { border-color: var(--ink); color: var(--ink); }
     .copy-btn.copied { border-color: var(--red); color: var(--red); }
 
+    /* Start Here panel uses blue accent instead of red */
+    #panel-start blockquote { border-left-color: var(--bar-bg); }
+    #panel-start ul li::before { color: var(--bar-bg); }
+
     footer { border-top: 1px solid var(--rule); padding: 1.25rem 3rem; font-size: 0.74rem; color: var(--mid); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
     footer a { color: inherit; text-decoration: none; }
     footer a:hover { color: var(--ink); }
@@ -197,7 +201,7 @@ title: "AI and the Human Future"
   <span class="menubar-title">{{ site.title }}</span>
   <ul class="menubar-tabs" role="tablist" aria-label="Course sections">
     {% assign sorted_tabs = site.tabs2 | sort: "order" %}
-    {% for tab in sorted_tab %}
+    {% for tab in sorted_tabs %}
     <li>
       <button class="tab-btn{% if forloop.first %} active{% endif %}"
               role="tab"
