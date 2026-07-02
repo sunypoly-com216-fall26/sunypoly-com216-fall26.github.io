@@ -2,14 +2,22 @@
 title: "Alien Species?"
 tab: species
 order: 2
-version: v2.1-claude
+version: v2.2-claude
 ---
 
 ## An alien species
 
 > Generative AI is arriving like an alien species. We did not decide whether it would appear in college, work, search, writing, art, coding, advising, entertainment, and everyday conversation. It is here — and the interesting question is how to study it honestly.
 
-A short video introducing this metaphor will go here: [video link to add].
+A short video introducing this metaphor:
+
+<div class="video-wrap">
+  <iframe
+    src="https://www.youtube.com/embed/hBtVGwuJzpk?start=2473"
+    title="Alien species metaphor"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen></iframe>
+</div>
 
 The metaphor is a doorway into the course. It is not a claim that the technology is magic, or dangerous, or alive. It is a way to slow down our first reaction — because most of the familiar labels do not quite work.
 
