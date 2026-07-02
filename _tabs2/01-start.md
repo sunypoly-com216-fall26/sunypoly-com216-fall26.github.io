@@ -2,18 +2,20 @@
 title: "Start Here"
 tab: start
 order: 1
-version: v2.1-claude
+version: v2.2-claude
 ---
 
-## Should you take this course?
+## Is this the right experience for your first year?
+
+This is a bundled course: a **1-credit First Year Seminar** paired with a **4-credit elective in Communications History** that satisfies your liberal arts requirements. You register for both, they meet together, and they count as two separate courses on your transcript.
 
 > Learn to use generative AI intelligently, responsibly, and with your own judgment intact — while studying how communication technologies have shaped human thought across ten thousand years of history.
 
-Here is the invitation: spend your first semester learning to use generative AI on purpose. Not secretly, not fearfully, and not as a magic answer machine. Use it directly. Test it. Push it. Notice what it does well, where it gets lazy, where it sounds more confident than it should, and where it genuinely helps you do work you could not have done alone.
+The pairing is intentional. The course asks students to approach generative AI the way you might approach something genuinely unfamiliar — not as a tool to master on day one, but as a phenomenon worth investigating. That kind of attention is easier to develop when ten thousand years of communications history is running alongside it. Generative AI looks very different when you can place it next to writing, print, and broadcast — and notice what it shares with them and what it does not.
 
-This course is designed for first-year students who are curious and a little adventurous. You do not need prior experience with generative AI, and this is not a coding course. You do need to be willing to use it often, compare tools, save your conversations, and keep your own judgment in charge.
+You do not need prior experience, and this is not a coding course. You do need to be willing to stay curious and keep your own judgment in charge.
 
-If you are thinking, "AI is interesting and I want to learn how to use it well" — you are probably in the right place. If you would rather avoid generative AI altogether, this is probably not the right first-year experience for you.
+If you are interested in using generative AI — not just picking up tricks, but actually understanding what it is — you are probably in the right place. If you would rather avoid it altogether, this is probably not the right first-year experience for you.
 
 ### What you will learn to do
 
