@@ -2,7 +2,7 @@
 title: "The Transcript Is the Work"
 tab: transcript
 order: 6
-version: v2.1-claude
+version: v2.2-claude
 ---
 
 ## The transcript is the work
@@ -21,15 +21,30 @@ A useful transcript does not have to be perfect. It should show movement. You as
 
 The transcript is not valuable because the model is impressive. It is valuable because it gives us a record of your judgment.
 
+### Questions worth keeping
+
+These are not rhetorical. They are the actual questions the course is organized around:
+
+- Can generative AI help me read something difficult without doing the reading for me?
+- When does working with it make me sharper — and when does it make me lazy?
+- How do I know when it is wrong?
+- What is mine in this document, and how would I show that to someone who asked?
+
 ### The AI Learner's Permit
 
-You will also hear this course talk about the **AI Learner's Permit**. The phrase is deliberately modest. It means you are learning how to operate a powerful tool accountably — with other people affected by what you do.
+On the first day of class, every student is issued an **AI Learner's Permit**. The permit gives you permission to use AI and large language models in COM 216 and to submit assignments that incorporate AI — provided the work is documented, visible, and yours.
 
-The permit is not a trophy and not a loophole. It means you are practicing how to use generative AI appropriately when a course, workplace, or project calls for it. You learn the controls, the blind spots, and the habit of keeping your work visible.
+Earning the permit requires completing a series of exercises that demonstrate critical AI use: saving your conversations, building a workspace that makes your thinking visible, and developing habits that keep the judgment yours. The permit is not a trophy and not a loophole. It is a record that you know how to work with these systems accountably.
+
+### Beyond the permit: Google Professional Certificates
+
+Students also have the opportunity to complete two Google Professional Certificates — **AI Essentials** and **AI Professional** — alongside companion exercises that offer a critical perspective on the training. The certificates are recognized by employers. The companion exercises are where the course's analytical work meets the practical skills the certificates build.
+
+The goal is not to learn to use AI. The goal is to learn how not to be used by it.
 
 ### A question worth asking
 
-One question we may put directly to a model is this:
+One question we put directly to a model early in the course:
 
 ```
 Some people say generative AI is arriving like an alien species. Is that a useful metaphor or a bad one? Why? What kind of thing are you when you generate language?

@@ -1,13 +1,13 @@
 ---
 title: "COM 216"
 tab: course
-order: 4
-version: v2.1-claude
+order: 5
+version: v2.2-claude
 ---
 
-## COM 216: AI and the Human Future
+## COM 216: Digital Media, Information and Society
 
-> COM 216 is a history of human communication told through one question: as our means of producing, sharing, and storing information changes, what happens to thought, memory, and what it means to know something?
+> COM 216 is a history of human communication told through one question: what happens to the way we think, remember, and know as our means of producing, sharing, and storing information changes?
 
 For most of human history, people generated meaning and tools helped carry it. Spoken language carried thought across a room. Memory carried stories across generations. Writing carried language outside the body for the first time. Print made copies at scale. Electronic media accelerated transmission. The internet connected people, documents, images, platforms, and archives in ways no previous century could have imagined.
 
