@@ -191,6 +191,9 @@ title: "AI and the Human Future"
       footer { padding-left: 1.5rem; padding-right: 1.5rem; }
       .panels { padding: 2.25rem 1.5rem 4rem; }
       .menubar-title { display: none; }
+      .menubar { white-space: normal; height: auto; flex-wrap: wrap; padding: 0.25rem 0.75rem; }
+      .menubar-tabs { flex-wrap: wrap; height: auto; }
+      .tab-btn { height: 24px; padding: 0 0.6rem; }
     }
   </style>
 </head>
@@ -245,11 +248,13 @@ title: "AI and the Human Future"
   btns.forEach(btn => {
     btn.addEventListener('click', () => {
       const id = btn.dataset.tab;
+      const isBottom = btn.closest('.menubar-bottom') !== null;
       btns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
       panels.forEach(p => p.classList.remove('active'));
       btn.classList.add('active');
       btn.setAttribute('aria-selected', 'true');
       document.getElementById('panel-' + id).classList.add('active');
+      if (isBottom) { window.scrollTo({ top: 0, behavior: 'smooth' }); }
     });
   });
 
