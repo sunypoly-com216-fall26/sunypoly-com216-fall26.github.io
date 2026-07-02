@@ -12,6 +12,8 @@ theme: minima
 
 # Collections
 collections:
+  tabs3:
+    output: false
   tabs2:
     output: false
   conversations:
