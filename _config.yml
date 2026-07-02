@@ -9,7 +9,7 @@ email: "steves@sunypoly.edu"
 
 # Build settings
 markdown: kramdown
-remote_theme: mmistacks/minimal-mistakes@4.26.2
+remote_theme: mmistakes/minimal-mistakes@4.26.2
 minimal_mistakes_skin: suny-poly-aix
 
 # Plugins (required for remote_theme on GitHub Pages)
