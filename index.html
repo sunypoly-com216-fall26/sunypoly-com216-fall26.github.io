@@ -8,7 +8,7 @@ title: "AI and the Human Future"
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ site.title }}</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -24,7 +24,6 @@ title: "AI and the Human Future"
       --red:      #8C1515;
       --red-pale: #fdf5f5;
       --bar-bg:   #5c6bc0;
-      --bar-h:    25px;
     }
 
     body {
@@ -35,55 +34,99 @@ title: "AI and the Human Future"
       min-height: 100vh;
     }
 
-    /* ── THIN MENU BAR (TiddlyWiki-style) ── */
-    .menubar {
-      height: var(--bar-h);
+    /* ── STICKY HEADER ── */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      width: 100%;
+      height: 44px;
       background: var(--bar-bg);
       display: flex;
       align-items: center;
-      padding: 0 0.75rem;
-      overflow-x: auto;
-      white-space: nowrap;
+      padding: 0 1rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.15);
     }
-    .menubar-title {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      color: #fff;
-      padding-right: 1rem;
-      flex-shrink: 0;
-    }
-    .menubar-tabs {
-      display: flex;
-      height: 100%;
-      list-style: none;
-      flex-shrink: 0;
-    }
-    .tab-btn {
+
+    .hamburger {
       background: none;
       border: none;
-      height: 100%;
-      padding: 0 0.85rem;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 400;
-      letter-spacing: 0.02em;
-      color: rgba(255,255,255,0.72);
       cursor: pointer;
-      transition: background 0.12s, color 0.12s;
-      white-space: nowrap;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 32px;
+      height: 32px;
+      padding: 6px 4px;
+      flex-shrink: 0;
+      border-radius: 4px;
+      transition: background 0.15s;
     }
-    .tab-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
-    .tab-btn:focus-visible { outline: 1px solid #fff; outline-offset: -2px; }
-    .tab-btn.active { background: rgba(255,255,255,0.16); color: #fff; font-weight: 500; }
+    .hamburger:hover { background: rgba(255,255,255,0.12); }
+    .hamburger:focus-visible { outline: 1px solid rgba(255,255,255,0.6); outline-offset: 2px; }
+    .hamburger span {
+      display: block;
+      width: 18px;
+      height: 1.5px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 1px;
+    }
 
+    .header-label {
+      flex: 1;
+      text-align: center;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: #fff;
+      text-transform: uppercase;
+      margin-right: 32px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* ── DROPDOWN NAV ── */
+    .nav-dropdown {
+      position: sticky;
+      top: 44px;
+      z-index: 199;
+      background: var(--bar-bg);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+      display: none;
+    }
+    .nav-dropdown.open { display: block; }
+    .nav-dropdown ul { list-style: none; padding: 0.4rem 0; }
+    .nav-dropdown li { border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nav-dropdown li:last-child { border-bottom: none; }
+    .drop-btn {
+      display: block;
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 0.65rem 1.25rem;
+      text-align: left;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.78);
+      cursor: pointer;
+      transition: background 0.1s, color 0.1s;
+    }
+    .drop-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
+    .drop-btn.active { color: #fff; font-weight: 500; background: rgba(255,255,255,0.08); }
+
+    /* ── PANELS ── */
     .panels { max-width: 800px; margin: 0 auto; padding: 3rem 3rem 6rem; }
     .panel { display: none; }
     .panel.active { display: block; animation: rise 0.2s ease both; }
     @keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
     @media (prefers-reduced-motion: reduce) { .panel.active { animation: none; } }
 
+    /* ── TYPOGRAPHY ── */
     .panel h2 {
       font-family: 'DM Sans', sans-serif;
       font-size: clamp(1.6rem, 3vw, 2rem);
@@ -131,6 +174,8 @@ title: "AI and the Human Future"
       margin-bottom: 0.5rem;
     }
     .panel ul li::before { content: '\2014'; position: absolute; left: 0; color: var(--red); font-weight: 300; }
+    .panel ol { margin: 0.5rem 0 1.5rem 1.5rem; max-width: 580px; }
+    .panel ol li { font-size: 0.95rem; line-height: 1.65; color: var(--ink); margin-bottom: 0.5rem; }
 
     .panel table {
       border-collapse: collapse;
@@ -145,11 +190,7 @@ title: "AI and the Human Future"
       text-align: left;
       color: var(--mid);
     }
-    .panel table th {
-      background: var(--white);
-      color: var(--ink);
-      font-weight: 500;
-    }
+    .panel table th { background: var(--white); color: var(--ink); font-weight: 500; }
 
     .panel pre {
       border: 1px solid var(--rule-lt);
@@ -180,60 +221,186 @@ title: "AI and the Human Future"
     .copy-btn:hover { border-color: var(--ink); color: var(--ink); }
     .copy-btn.copied { border-color: var(--red); color: var(--red); }
 
+    /* ── VIDEO ── */
+    .video-wrap {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      max-width: 580px;
+      margin: 1.5rem 0 2rem;
+    }
+    .video-wrap iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
 
-    footer { border-top: 1px solid var(--rule); padding: 1.25rem 3rem; font-size: 0.74rem; color: var(--mid); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+    /* ── HERO (home panel) ── */
+    .hero { padding: 3.5rem 0 2.5rem; max-width: 600px; }
+    .hero-title {
+      font-size: clamp(2.4rem, 7vw, 3.6rem);
+      font-weight: 500;
+      line-height: 1.05;
+      color: var(--ink);
+      margin-bottom: 1.75rem;
+      cursor: pointer;
+      display: inline-block;
+      transition: color 0.15s;
+    }
+    .hero-title:hover { color: var(--bar-bg); }
+    .hero-title .year { color: var(--bar-bg); }
+    .hero-hint {
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      color: var(--faint);
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--mid);
+      max-width: 520px;
+      border-left: 3px solid var(--bar-bg);
+      padding-left: 1rem;
+      margin: 0;
+    }
+    .hero-sub em { color: var(--ink); font-style: normal; font-weight: 500; }
+
+    /* ── TAB SUMMARY HEADLINE ── */
+    .tab-summary {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--ink);
+      max-width: 580px;
+      margin-bottom: 1.75rem;
+      line-height: 1.5;
+      border-left: 3px solid var(--bar-bg);
+      padding-left: 1rem;
+    }
+
+    /* ── EXPAND / COLLAPSE CONTROLS ── */
+    .expand-controls { margin: 0 0 2rem; }
+    .expand-controls button {
+      background: none;
+      border: 1px solid var(--rule);
+      padding: 0.3rem 0.9rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      color: var(--mid);
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+      margin-right: 0.5rem;
+    }
+    .expand-controls button:hover { border-color: var(--ink); color: var(--ink); }
+
+    /* ── COLLAPSIBLE SECTIONS ── */
+    .collapsible-section { margin: 2rem 0 0; max-width: 580px; }
+    .section-toggle {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin: 0 0 0.45rem;
+      user-select: none;
+      line-height: 1.3;
+    }
+    .section-toggle::before {
+      content: '▶';
+      font-size: 0.6rem;
+      color: var(--bar-bg);
+      transition: transform 0.18s;
+      flex-shrink: 0;
+      position: relative;
+      top: -0.05em;
+    }
+    .collapsible-section.open .section-toggle::before { transform: rotate(90deg); }
+    .section-lead {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--mid);
+      margin-bottom: 0;
+      max-width: 580px;
+    }
+    .section-body { display: none; padding-top: 0.75rem; }
+    .collapsible-section.open .section-body { display: block; }
+
+    /* ── NESTED PROMPT TOGGLE ── */
+    .prompt-toggle {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--bar-bg);
+      cursor: pointer;
+      border: 1px solid var(--bar-bg);
+      padding: 0.2rem 0.7rem;
+      margin: 0.75rem 0 0.25rem;
+      transition: background 0.15s, color 0.15s;
+      user-select: none;
+    }
+    .prompt-toggle:hover { background: var(--bar-bg); color: #fff; }
+    .prompt-body { display: none; }
+    .prompt-section.open .prompt-body { display: block; }
+    .prompt-section.open .prompt-toggle { background: var(--bar-bg); color: #fff; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 1.25rem 3rem;
+      font-size: 0.74rem;
+      color: var(--mid);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
     footer a { color: inherit; text-decoration: none; }
     footer a:hover { color: var(--ink); }
-
-    .menubar-bottom { position: sticky; bottom: 0; border-top: 1px solid rgba(255,255,255,0.15); }
 
     @media (max-width: 640px) {
       footer { padding-left: 1.5rem; padding-right: 1.5rem; }
       .panels { padding: 2.25rem 1.5rem 4rem; }
-      .menubar-title { display: none; }
-      .menubar { white-space: normal; height: auto; flex-wrap: wrap; padding: 0.25rem 0.75rem; }
-      .menubar-tabs { flex-wrap: wrap; height: auto; }
-      .tab-btn { height: 24px; padding: 0 0.6rem; }
     }
   </style>
 </head>
 <body>
 
-<div class="menubar">
-  <button class="menubar-title tab-btn" style="padding-left:0; font-size:0.7rem; font-weight:500; letter-spacing:0.04em;" data-tab="home">{{ site.title }}</button>
-  <ul class="menubar-tabs" role="tablist" aria-label="Course sections">
-    {% assign sorted_tabs = site.tabs2 | sort: "order" %}
+{% assign sorted_tabs = site.tabs3 | sort: "order" %}
+
+<header class="site-header">
+  <button class="hamburger" id="hamburger" aria-label="Open navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <span class="header-label" id="header-label">{{ site.title }}</span>
+</header>
+
+<nav class="nav-dropdown" id="nav-dropdown" aria-label="Course sections" aria-hidden="true">
+  <ul>
     {% for tab in sorted_tabs %}
     <li>
-      <button class="tab-btn{% if forloop.first %} active{% endif %}"
-              role="tab"
-              aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+      <button class="drop-btn{% if forloop.first %} active{% endif %}"
               data-tab="{{ tab.tab }}">{{ tab.title }}</button>
     </li>
     {% endfor %}
   </ul>
-</div>
+</nav>
 
 <div class="panels">
   {% for tab in sorted_tabs %}
-  <div class="panel{% if forloop.first %} active{% endif %}" id="panel-{{ tab.tab }}" role="tabpanel">
+  <div class="panel{% if forloop.first %} active{% endif %}"
+       id="panel-{{ tab.tab }}"
+       role="tabpanel">
     {{ tab.content }}
   </div>
   {% endfor %}
-</div>
-
-<div class="menubar menubar-bottom">
-  <button class="menubar-title tab-btn" style="padding-left:0; font-size:0.7rem; font-weight:500; letter-spacing:0.04em;" data-tab="home">{{ site.title }}</button>
-  <ul class="menubar-tabs" role="tablist" aria-label="Course sections (bottom)">
-    {% for tab in sorted_tabs %}
-    <li>
-      <button class="tab-btn{% if forloop.first %} active{% endif %}"
-              role="tab"
-              aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
-              data-tab="{{ tab.tab }}">{{ tab.title }}</button>
-    </li>
-    {% endfor %}
-  </ul>
 </div>
 
 <footer>
@@ -242,23 +409,87 @@ title: "AI and the Human Future"
 </footer>
 
 <script>
-  const btns   = document.querySelectorAll('.tab-btn');
-  const panels = document.querySelectorAll('.panel');
+  const hamburger   = document.getElementById('hamburger');
+  const dropdown    = document.getElementById('nav-dropdown');
+  const headerLabel = document.getElementById('header-label');
+  const panels      = document.querySelectorAll('.panel');
+  const dropBtns    = document.querySelectorAll('.drop-btn');
 
-  btns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const id = btn.dataset.tab;
-      const isBottom = btn.closest('.menubar-bottom') !== null;
-      btns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
-      panels.forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      btn.setAttribute('aria-selected', 'true');
-      document.getElementById('panel-' + id).classList.add('active');
-      if (isBottom) { window.scrollTo({ top: 0, behavior: 'smooth' }); }
-    });
+  const SITE_TITLE = '{{ site.title }}';
+
+  function closeDropdown() {
+    dropdown.classList.remove('open');
+    dropdown.setAttribute('aria-hidden', 'true');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.setAttribute('aria-label', 'Open navigation');
+  }
+
+  function openDropdown() {
+    dropdown.classList.add('open');
+    dropdown.setAttribute('aria-hidden', 'false');
+    hamburger.setAttribute('aria-expanded', 'true');
+    hamburger.setAttribute('aria-label', 'Close navigation');
+  }
+
+  function showPanel(id) {
+    panels.forEach(p => p.classList.remove('active'));
+    const target = document.getElementById('panel-' + id);
+    if (target) target.classList.add('active');
+
+    dropBtns.forEach(b => b.classList.toggle('active', b.dataset.tab === id));
+
+    const activeBtn = document.querySelector('.drop-btn[data-tab="' + id + '"]');
+    headerLabel.textContent = (id === 'home')
+      ? SITE_TITLE
+      : (activeBtn ? activeBtn.textContent : id);
+
+    closeDropdown();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  window.showPanel = showPanel;
+
+  // Hamburger always toggles dropdown
+  hamburger.addEventListener('click', () => {
+    dropdown.classList.contains('open') ? closeDropdown() : openDropdown();
   });
 
-  // Add copy buttons to any <pre> code blocks (e.g. the Invitation One prompt)
+  dropBtns.forEach(btn => {
+    btn.addEventListener('click', () => showPanel(btn.dataset.tab));
+  });
+
+  // Close on outside click or touch
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.site-header') && !e.target.closest('.nav-dropdown')) {
+      closeDropdown();
+    }
+  });
+  document.addEventListener('touchstart', e => {
+    if (!e.target.closest('.site-header') && !e.target.closest('.nav-dropdown')) {
+      closeDropdown();
+    }
+  }, { passive: true });
+
+  // Close on Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeDropdown();
+  });
+
+  // ── Expand / Collapse All (scoped to visible panel) ──
+  window.expandAll = function(btn) {
+    btn.closest('.panel').querySelectorAll('.collapsible-section').forEach(s => s.classList.add('open'));
+  };
+  window.collapseAll = function(btn) {
+    btn.closest('.panel').querySelectorAll('.collapsible-section').forEach(s => s.classList.remove('open'));
+  };
+
+  // ── Prompt toggle ──
+  window.togglePrompt = function(btn) {
+    const section = btn.closest('.prompt-section');
+    section.classList.toggle('open');
+    btn.textContent = section.classList.contains('open') ? 'Hide prompt ▴' : 'Show prompt ▸';
+  };
+
+  // ── Copy buttons on <pre> blocks ──
   document.querySelectorAll('.panel pre').forEach(pre => {
     const btn = document.createElement('button');
     btn.className = 'copy-btn';
@@ -276,16 +507,15 @@ title: "AI and the Human Future"
     pre.prepend(btn);
   });
 
-  // Auto-set YouTube end = start + 100 unless already specified
+  // ── YouTube: auto-set end = start + 173 if not specified ──
   document.querySelectorAll('iframe[src*="youtube.com/embed"]').forEach(iframe => {
     const url = new URL(iframe.src);
     const start = parseInt(url.searchParams.get('start') || '0');
     if (!url.searchParams.has('end')) {
-      url.searchParams.set('end', start + 100);
+      url.searchParams.set('end', start + 173);
       iframe.src = url.toString();
     }
   });
-
 </script>
 
 </body>
