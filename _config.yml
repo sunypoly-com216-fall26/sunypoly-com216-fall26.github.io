@@ -48,3 +48,10 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - vendor
+  - docs
+  - Rakefile
+
+# Force-copy dotfiles Jekyll would otherwise skip.
+# .nojekyll tells Pages to serve docs/ as-is instead of re-running Jekyll.
+include:
+  - .nojekyll
