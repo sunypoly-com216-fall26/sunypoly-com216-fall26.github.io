@@ -50,6 +50,8 @@ exclude:
   - vendor
   - docs
   - Rakefile
+  - README.md
+  - SETUP.md
 
 # Force-copy dotfiles Jekyll would otherwise skip.
 # .nojekyll tells Pages to serve docs/ as-is instead of re-running Jekyll.
