@@ -1,7 +1,8 @@
 name: Build and deploy site
 
-# Builds on content changes to main. Deliberately does NOT list docs/ or
-# any generated path, so a deploy can never retrigger this workflow.
+# Builds on content changes to main, then deploys straight to Pages.
+# No generated output is committed to this repo, and no generated path is
+# listed below, so a deploy can never retrigger this workflow.
 on:
   push:
     branches: [main]

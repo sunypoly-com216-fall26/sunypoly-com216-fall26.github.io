@@ -1,5 +1,0 @@
-# Production overlay. Merged over _config.yml:
-#   bundle exec jekyll build --config _config.yml,_config_prod.yml
-# Only difference is the destination: previews stay in _site/ (gitignored),
-# publish builds go to docs/ (tracked, served by GitHub Pages).
-destination: docs

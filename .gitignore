@@ -6,4 +6,3 @@ _site/
 *.zip
 vendor/
 .bundle/
-docs/

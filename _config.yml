@@ -7,9 +7,15 @@ url: "https://sunypoly-com216-fall26.github.io"
 author: "Steven M. Schneider"
 email: "steves@sunypoly.edu"
 
+# HOW THIS SITE IS PUBLISHED
+# Push content to `main` and .github/workflows/build.yml builds the site with
+# Jekyll 4 on Ruby 3.4 and deploys it to GitHub Pages. There is no build step
+# for a human to run and no generated output committed to this repo.
+# Local `rake preview` is optional and affects nothing that gets published.
+#
 # Build settings
 # No theme gem: index.html is self-contained (layout: null) and the
-# conversations collection uses the local _layouts/page.html.
+# conversations collection would use the local _layouts/page.html.
 markdown: kramdown
 
 # Collections
@@ -48,12 +54,6 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - vendor
-  - docs
   - Rakefile
   - README.md
   - SETUP.md
-
-# Force-copy dotfiles Jekyll would otherwise skip.
-# .nojekyll tells Pages to serve docs/ as-is instead of re-running Jekyll.
-include:
-  - .nojekyll
