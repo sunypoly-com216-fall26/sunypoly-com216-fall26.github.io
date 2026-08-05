@@ -36,9 +36,11 @@ jobs:
 
       # Reads .ruby-version and Gemfile.lock from the repo, so CI uses the
       # exact Ruby and gems pinned locally. SHA-pinned rather than @v1 so a
-      # moved tag can't swap in different code.
+      # moved tag can't swap in different code -- but note the pin must be
+      # bumped when a new Ruby is adopted, since the action's known-version
+      # list is baked into the pinned commit. Dependabot handles that.
       - name: Set up Ruby
-        uses: ruby/setup-ruby@4a9ddd6f338a97768b8006bf671dfbad383215f4 # v1
+        uses: ruby/setup-ruby@afeafc3d1ab54a631816aba4c914a0081c12ff2f # v1 (2026-05-20)
         with:
           ruby-version: .ruby-version
           bundler-cache: true

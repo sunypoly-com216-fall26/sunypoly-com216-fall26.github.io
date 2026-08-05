@@ -1,0 +1,19 @@
+# Keeps the SHA-pinned actions and the Gemfile.lock current.
+# Without this, pinned actions silently go stale -- which is what broke the
+# first build (the pinned setup-ruby predated Ruby 3.4.10).
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+
+  - package-ecosystem: bundler
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+      semver-major-days: 14
