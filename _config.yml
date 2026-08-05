@@ -8,11 +8,9 @@ author: "Steven M. Schneider"
 email: "steves@sunypoly.edu"
 
 # Build settings
-# index.html is self-contained (layout: null), so no theme layouts are
-# required. minima ships with the github-pages gem and covers any page
-# that does ask for a layout.
+# No theme gem: index.html is self-contained (layout: null) and the
+# conversations collection uses the local _layouts/page.html.
 markdown: kramdown
-theme: minima
 
 # Collections
 # tabs3 is the set the live site renders (index.html sorts site.tabs3 by
