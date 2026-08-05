@@ -1,0 +1,59 @@
+title: "SUNY Poly AI FYE"
+description: >
+  SUNY Poly experience combining FYS 111 -- first year seminar -- with COM 216,
+  using AI to examine the history of human communication.
+baseurl: ""
+url: "https://sunypoly-com216-fall26.github.io"
+author: "Steven M. Schneider"
+email: "steves@sunypoly.edu"
+
+# Build settings
+# No theme gem: index.html is self-contained (layout: null) and the
+# conversations collection uses the local _layouts/page.html.
+markdown: kramdown
+
+# Collections
+# tabs3 is the set the live site renders (index.html sorts site.tabs3 by
+# "order"). The earlier tab sets stay declared so their files are read but
+# not published as standalone pages.
+collections:
+  tabs3:
+    output: false
+  tabs2:
+    output: false
+  tabs11:
+    output: false
+  tabs1:
+    output: false
+  conversations:
+    output: true
+    permalink: /conversations/:name/
+  bib:
+    output: false
+
+defaults:
+  - scope:
+      path: ""
+      type: conversations
+    values:
+      layout: page
+
+# Exclude non-content files from build
+exclude:
+  - .DS_Store
+  - "*.DS_Store"
+  - "shared/lit-review/*.bib"
+  - "lit-rev-v0"
+  - "_bib/*.bib"
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - docs
+  - Rakefile
+  - README.md
+  - SETUP.md
+
+# Force-copy dotfiles Jekyll would otherwise skip.
+# .nojekyll tells Pages to serve docs/ as-is instead of re-running Jekyll.
+include:
+  - .nojekyll

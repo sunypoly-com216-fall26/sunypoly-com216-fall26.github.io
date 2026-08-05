@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SUNY Poly AI FYE</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:      #333;
+      --mid:      #666;
+      --faint:    #999;
+      --rule:     #ccc;
+      --rule-lt:  #ddd;
+      --bg:       #f5f5f5;
+      --cream:    #ede9e2;
+      --white:    #ffffff;
+      --red:      #8C1515;
+      --red-pale: #fdf5f5;
+      --bar-bg:   #5c6bc0;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    /* ── STICKY HEADER ── */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      width: 100%;
+      height: 44px;
+      background: var(--bar-bg);
+      display: flex;
+      align-items: center;
+      padding: 0 1rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+    }
+
+    .hamburger {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 32px;
+      height: 32px;
+      padding: 6px 4px;
+      flex-shrink: 0;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+    .hamburger:hover { background: rgba(255,255,255,0.12); }
+    .hamburger:focus-visible { outline: 1px solid rgba(255,255,255,0.6); outline-offset: 2px; }
+    .hamburger span {
+      display: block;
+      width: 18px;
+      height: 1.5px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 1px;
+    }
+
+    .header-label {
+      flex: 1;
+      text-align: center;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: #fff;
+      text-transform: uppercase;
+      margin-right: 32px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* ── DROPDOWN NAV ── */
+    .nav-dropdown {
+      position: sticky;
+      top: 44px;
+      z-index: 199;
+      background: var(--bar-bg);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+      display: none;
+    }
+    .nav-dropdown.open { display: block; }
+    .nav-dropdown ul { list-style: none; padding: 0.4rem 0; }
+    .nav-dropdown li { border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nav-dropdown li:last-child { border-bottom: none; }
+    .drop-btn {
+      display: block;
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 0.65rem 1.25rem;
+      text-align: left;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.78);
+      cursor: pointer;
+      transition: background 0.1s, color 0.1s;
+    }
+    .drop-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
+    .drop-btn.active { color: #fff; font-weight: 500; background: rgba(255,255,255,0.08); }
+
+    /* ── PANELS ── */
+    .panels { max-width: 800px; margin: 0 auto; padding: 3rem 3rem 6rem; }
+    .panel { display: none; }
+    .panel.active { display: block; animation: rise 0.2s ease both; }
+    @keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    @media (prefers-reduced-motion: reduce) { .panel.active { animation: none; } }
+
+    /* ── TYPOGRAPHY ── */
+    .panel h2 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(1.6rem, 3vw, 2rem);
+      line-height: 1.12;
+      color: var(--ink);
+      margin-bottom: 1.4rem;
+    }
+    .panel h3 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.15rem;
+      line-height: 1.25;
+      color: var(--ink);
+      margin-top: 2.4rem;
+      margin-bottom: 0.6rem;
+    }
+    .panel p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--mid);
+      max-width: 580px;
+      margin-bottom: 1rem;
+    }
+    .panel p strong { color: var(--ink); font-weight: 500; }
+    .panel p em { font-style: italic; }
+    .panel blockquote {
+      font-family: 'DM Sans', sans-serif;
+      font-style: italic;
+      font-size: 1.04rem;
+      color: var(--ink);
+      line-height: 1.7;
+      margin-bottom: 1.7rem;
+      padding-left: 1.2rem;
+      border-left: 3px solid var(--bar-bg);
+      max-width: 580px;
+    }
+    .panel hr { border: none; border-top: 1px solid var(--rule-lt); margin: 2.4rem 0; }
+    .panel ul { margin: 0.5rem 0 1.5rem 0; max-width: 580px; }
+    .panel ul li {
+      list-style: none;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--ink);
+      padding-left: 1.3rem;
+      position: relative;
+      margin-bottom: 0.5rem;
+    }
+    .panel ul li::before { content: '\2014'; position: absolute; left: 0; color: var(--red); font-weight: 300; }
+    .panel ol { margin: 0.5rem 0 1.5rem 1.5rem; max-width: 580px; }
+    .panel ol li { font-size: 0.95rem; line-height: 1.65; color: var(--ink); margin-bottom: 0.5rem; }
+
+    .panel table {
+      border-collapse: collapse;
+      margin: 1.5rem 0 2rem;
+      width: 100%;
+      max-width: 580px;
+    }
+    .panel table th, .panel table td {
+      border: 1px solid var(--rule-lt);
+      padding: 0.6rem 0.9rem;
+      font-size: 0.85rem;
+      text-align: left;
+      color: var(--mid);
+    }
+    .panel table th { background: var(--white); color: var(--ink); font-weight: 500; }
+
+    .panel pre {
+      border: 1px solid var(--rule-lt);
+      background: var(--white);
+      padding: 1.25rem 1.5rem;
+      font-size: 0.83rem;
+      line-height: 1.6;
+      overflow-x: auto;
+      margin-bottom: 1.25rem;
+      position: relative;
+      white-space: pre-wrap;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 0.7rem;
+      right: 0.9rem;
+      background: var(--bg);
+      border: 1px solid var(--rule);
+      padding: 0.28rem 0.85rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--mid);
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .copy-btn:hover { border-color: var(--ink); color: var(--ink); }
+    .copy-btn.copied { border-color: var(--red); color: var(--red); }
+
+    /* ── VIDEO ── */
+    .video-wrap {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      max-width: 580px;
+      margin: 1.5rem 0 2rem;
+    }
+    .video-wrap iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+
+    /* ── HERO (home panel) ── */
+    .hero { padding: 3.5rem 0 2.5rem; max-width: 600px; }
+    .hero-title {
+      font-size: clamp(2.4rem, 7vw, 3.6rem);
+      font-weight: 500;
+      line-height: 1.05;
+      color: var(--ink);
+      margin-bottom: 1.75rem;
+      cursor: pointer;
+      display: inline-block;
+      transition: color 0.15s;
+    }
+    .hero-title:hover { color: var(--bar-bg); }
+    .hero-title .year { color: var(--bar-bg); }
+    .hero-hint {
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      color: var(--faint);
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--mid);
+      max-width: 520px;
+      border-left: 3px solid var(--bar-bg);
+      padding-left: 1rem;
+      margin: 0;
+    }
+    .hero-sub em { color: var(--ink); font-style: normal; font-weight: 500; }
+
+    /* ── TAB SUMMARY HEADLINE ── */
+    .tab-summary {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--ink);
+      max-width: 580px;
+      margin-bottom: 1.75rem;
+      line-height: 1.5;
+      border-left: 3px solid var(--bar-bg);
+      padding-left: 1rem;
+    }
+
+    /* ── EXPAND / COLLAPSE CONTROLS ── */
+    .expand-controls { margin: 0 0 2rem; }
+    .expand-controls button {
+      background: none;
+      border: 1px solid var(--rule);
+      padding: 0.3rem 0.9rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      color: var(--mid);
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+      margin-right: 0.5rem;
+    }
+    .expand-controls button:hover { border-color: var(--ink); color: var(--ink); }
+
+    /* ── COLLAPSIBLE SECTIONS ── */
+    .collapsible-section { margin: 2rem 0 0; max-width: 580px; }
+    .section-toggle {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin: 0 0 0.45rem;
+      user-select: none;
+      line-height: 1.3;
+    }
+    .section-toggle::before {
+      content: '▶';
+      font-size: 0.6rem;
+      color: var(--bar-bg);
+      transition: transform 0.18s;
+      flex-shrink: 0;
+      position: relative;
+      top: -0.05em;
+    }
+    .collapsible-section.open .section-toggle::before { transform: rotate(90deg); }
+    .section-lead {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--mid);
+      margin-bottom: 0;
+      max-width: 580px;
+    }
+    .section-body { display: none; padding-top: 0.75rem; }
+    .collapsible-section.open .section-body { display: block; }
+
+    /* ── NESTED PROMPT TOGGLE ── */
+    .prompt-toggle {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--bar-bg);
+      cursor: pointer;
+      border: 1px solid var(--bar-bg);
+      padding: 0.2rem 0.7rem;
+      margin: 0.75rem 0 0.25rem;
+      transition: background 0.15s, color 0.15s;
+      user-select: none;
+    }
+    .prompt-toggle:hover { background: var(--bar-bg); color: #fff; }
+    .prompt-body { display: none; }
+    .prompt-section.open .prompt-body { display: block; }
+    .prompt-section.open .prompt-toggle { background: var(--bar-bg); color: #fff; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 1.25rem 3rem;
+      font-size: 0.74rem;
+      color: var(--mid);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    footer a { color: inherit; text-decoration: none; }
+    footer a:hover { color: var(--ink); }
+
+    @media (max-width: 640px) {
+      footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .panels { padding: 2.25rem 1.5rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+
+
+<header class="site-header">
+  <button class="hamburger" id="hamburger" aria-label="Open navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <span class="header-label" id="header-label">SUNY Poly AI FYE</span>
+</header>
+
+<nav class="nav-dropdown" id="nav-dropdown" aria-label="Course sections" aria-hidden="true">
+  <ul>
+    
+    <li>
+      <button class="drop-btn active"
+              data-tab="home">Home</button>
+    </li>
+    
+    <li>
+      <button class="drop-btn"
+              data-tab="start">Start Here</button>
+    </li>
+    
+    <li>
+      <button class="drop-btn"
+              data-tab="species">Alien Species?</button>
+    </li>
+    
+    <li>
+      <button class="drop-btn"
+              data-tab="aifye">AI-FYE</button>
+    </li>
+    
+    <li>
+      <button class="drop-btn"
+              data-tab="fys">FYS 111</button>
+    </li>
+    
+    <li>
+      <button class="drop-btn"
+              data-tab="course">COM 216</button>
+    </li>
+    
+    <li>
+      <button class="drop-btn"
+              data-tab="transcript">The Transcript Is the Work</button>
+    </li>
+    
+    <li>
+      <button class="drop-btn"
+              data-tab="try">Invitation One</button>
+    </li>
+    
+  </ul>
+</nav>
+
+<div class="panels">
+  
+  <div class="panel active"
+       id="panel-home"
+       role="tabpanel">
+    <div class="hero">
+  <p class="hero-hint">↓ tap to start</p>
+  <div class="hero-title" onclick="window.showPanel('start')">
+    AI First<br />for <span class="year">Year One</span>
+  </div>
+  <p class="hero-sub">
+    Read, think, and write with generative AI as we study the history of human communication — from <em>memory and the spoken word</em> to <em>the transformer era of today and tomorrow</em>.
+  </p>
+</div>
+
+  </div>
+  
+  <div class="panel"
+       id="panel-start"
+       role="tabpanel">
+    <p class="tab-summary">Generative AI is here. You need to learn how to think with it, not around it.</p>
+
+<div class="expand-controls">
+  <button onclick="expandAll(this)">Expand All</button>
+  <button onclick="collapseAll(this)">Collapse All</button>
+</div>
+
+<h2>Is this the right experience for your first year?</h2>
+
+<p>This is a bundled course: a <strong>1-credit First Year Seminar</strong> paired with a <strong>4-credit elective in Communications History</strong> that satisfies your liberal arts requirements. You register for both, they meet together, and they count as two separate courses on your transcript.</p>
+
+<div class="collapsible-section">
+  <div class="section-toggle" onclick="this.parentElement.classList.toggle('open')">About the pairing</div>
+  <p class="section-lead">The pairing is intentional.</p>
+  <div class="section-body">
+    <p>The course asks students to approach generative AI the way you might approach something genuinely unfamiliar — not as a tool to master on day one, but as a phenomenon worth investigating. That kind of attention is easier to develop when ten thousand years of communications history is running alongside it. Generative AI looks very different when you can place it next to writing, print, and broadcast — and notice what it shares with them and what it does not.</p>
+    <p>You do not need prior experience, and this is not a coding course. You do need to be willing to stay curious and keep your own judgment in charge.</p>
+    <p>If you are interested in using generative AI — not just picking up tricks, but actually understanding what it is — you are probably in the right place. If you would rather avoid it altogether, this is probably not the right first-year experience for you.</p>
+    <blockquote>Learn to use generative AI intelligently, responsibly, and with your own judgment intact — while studying how communication technologies have shaped human thought across ten thousand years of history.</blockquote>
+  </div>
+</div>
+
+<div class="collapsible-section">
+  <div class="section-toggle" onclick="this.parentElement.classList.toggle('open')">What you will learn to do</div>
+  <p class="section-lead">Use generative AI to ask better questions, read difficult material, draft, revise, plan, and study.</p>
+  <div class="section-body">
+    <ul>
+      <li>Tell the difference between a useful response, a polished but weak response, and a response that is simply wrong.</li>
+      <li>Keep a record of how your thinking develops when you work with a model.</li>
+      <li>Use these tools in ways that are appropriate for college and responsible to other people.</li>
+      <li>Understand why this technology matters in the longer history of human communication — and what makes it genuinely different from everything that came before it.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="collapsible-section">
+  <div class="section-toggle" onclick="this.parentElement.classList.toggle('open')">Questions this course starts from</div>
+  <p class="section-lead">How can generative AI help me learn without doing the learning for me?</p>
+  <div class="section-body">
+    <ul>
+      <li>What changes when machines can generate language back at us?</li>
+      <li>How do I know when a model is useful, wrong, shallow, or overconfident?</li>
+      <li>What does it mean to write, read, and think in college now?</li>
+      <li>How do I use generative AI without letting it replace my own judgment?</li>
+    </ul>
+  </div>
+</div>
+
+<div class="collapsible-section">
+  <div class="section-toggle" onclick="this.parentElement.classList.toggle('open')">Technology expectations</div>
+  <p class="section-lead">Students in this course are provided access to paid generative AI tools.</p>
+  <div class="section-body">
+    <p>You do not need to buy a subscription on your own. You will, however, need to be willing to use commercial generative AI systems regularly as part of the coursework.</p>
+    <p>That means we also practice basic rules for privacy and academic honesty. Do not put sensitive personal, medical, financial, or family information into these systems. If a tool creates an accessibility problem, we will adjust the workflow. The course assumes frequent use of generative AI — but visible, documented, and accountable use.</p>
+  </div>
+</div>
+
+  </div>
+  
+  <div class="panel"
+       id="panel-species"
+       role="tabpanel">
+    <p class="tab-summary">It's not a search engine or a calculator. Understanding what it actually is changes everything.</p>
+
+<div class="expand-controls">
+  <button onclick="expandAll(this)">Expand All</button>
+  <button onclick="collapseAll(this)">Collapse All</button>
+</div>
+
+<h2>An alien species of exotic mind-like entities</h2>
+
+<div class="video-wrap">
+  <iframe src="https://www.youtube.com/embed/v1Py_hWcmkU?start=2406&amp;end=2579" title="Alien species metaphor" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+
+<p>Generative AI is arriving like an alien species of exotic mind-like entities. We did not decide whether it would appear in college, work, search, writing, art, coding, advising, entertainment, and everyday conversation. It is here — and the interesting question is how to study it honestly.</p>
+
+<div class="collapsible-section">
+  <div class="section-toggle" onclick="this.parentElement.classList.toggle('open')">Why the familiar comparisons break down</div>
+  <p class="section-lead">The metaphor is a doorway into the course.</p>
+  <div class="section-body">
+    <p>It is not a claim that the technology is magic, or dangerous, or alive. It is a way to slow down our first reaction — because most of the familiar labels do not quite work.</p>
+    <p>When students first use generative AI, they reach for comparisons they already know. It seems like a search engine, because you can ask it questions. It seems like a calculator, because it produces answers quickly. It seems like a database, because it can retrieve information on demand. Those comparisons help for about five minutes. Then they break.</p>
+    <p>Generative AI does not retrieve a stored page, perform a fixed operation, or play back a recorded answer. It generates fresh language in response to context. It can summarize, imitate, transform, draft, compare, invent, explain, and revise. It can also drift, bluff, flatten differences, miss what matters, and make weak thinking look polished.</p>
+  </div>
+</div>
+
+<div class="collapsible-section">
+  <div class="section-toggle" onclick="this.parentElement.classList.toggle('open')">What makes it genuinely strange</div>
+  <p class="section-lead">People talk to it like a someone.</p>
+  <div class="section-body">
+    <p>They feel met by it — and that is not simply a mistake, because the thing genuinely answers. A not-person that we relate to as a person: we have never had that before, and we do not yet have good instincts for navigating it. Whether these systems understand anything — in any meaningful sense — is not a settled question. Serious people are working on it. This course takes the question seriously rather than settling it prematurely in either direction.</p>
+    <p>That is why the alien species metaphor is useful. It asks you to start from curiosity rather than from a category you already know. What kind of thing is this? What does it do to language? What does it do to attention, memory, writing, and judgment?</p>
+    <p>That is the tone of the course. Curious first. Useful next. Critical all the way through.</p>
+  </div>
+</div>
+
+  </div>
+  
+  <div class="panel"
+       id="panel-aifye"
+       role="tabpanel">
+    <p class="tab-summary">We built a paired course so you can practice using it while studying why it matters.</p>
+
+<div class="expand-controls">
+  <button onclick="expandAll(this)">Expand All</button>
+  <button onclick="collapseAll(this)">Collapse All</button>
+</div>
+
+<h2>The AI-FYE</h2>
+
+<p>The AI-FYE links two courses so first-year students can practice using generative AI while also studying why it matters — in the same semester, back to back, starting from day one.</p>
+
+<div class="collapsible-section">
+  <div class="section-toggle" onclick="this.parentElement.classList.toggle('open')">The basic idea</div>
+  <p class="section-lead">Do not treat generative AI as something students encounter after college habits are already formed.</p>
+  <div class="section-body">
+    <p>Put it in the first year, make the use visible, and teach students how to work with it deliberately from the beginning.</p>
+    <p>The AI-FYE combines <strong>FYS 111: The AI Experience</strong> (1 credit) and <strong>COM 216: Digital Media, Information and Society</strong> (4 credits). The courses share students and run back to back — one hour of hands-on practice followed immediately by two hours of reading, discussion, and writing. You walk out of FYS 111 and into COM 216 still holding the same open tab.</p>
+  </div>
+</div>
+
+<div class="collapsible-section">
+  <div class="section-toggle" onclick="this.parentElement.classList.toggle('open')">FYS 111: The AI Experience</div>
+  <p class="section-lead">FYS 111 focuses on the habits and systems students need in college with generative AI in the room.</p>
+  <div class="section-body">
+    <p>You practice prompting, saving conversations, comparing models, building useful workflows, organizing coursework, and noticing when a tool is helping or getting in the way. You also look honestly at where generative AI goes wrong — including what happens when people develop relationships with these systems that they were not quite prepared for.</p>
+  </div>
+</div>
+
+<div class="collapsible-section">
+  <div class="section-toggle" onclick="this.parentElement.classList.toggle('open')">COM 216: Digital Media, Information and Society</div>
+  <p class="section-lead">COM 216 is the four-credit course.</p>
+  <div class="section-body">
+    <p>It studies the history of information and media — from the oral world through writing, print, electronic media, the internet, and the transformer era. Its central argument is that generative AI is the first technology in this long history to generate language rather than carry it — and that understanding what that means is the intellectual work of the semester.</p>
+  </div>
+</div>
+
+<div class="collapsible-section">
+  <div class="section-toggle" onclick="this.parentElement.classList.toggle('open')">Why link them?</div>
+  <p class="section-lead">The link gives the semester a rhythm.</p>
+  <div class="section-body">
+    <p>In FYS 111, you build habits and practice with the tools. In COM 216, you use those habits to read, discuss, and write about larger questions. Neither course is merely the support act for the other. Together, they create a first-year experience organized around the same problem from two directions: how to use generative AI well, and how to understand what it is.</p>
+  </div>
+</div>
+
+  </div>
+  
+  <div class="panel"
+       id="panel-fys"
+       role="tabpanel">
+    <p class="tab-summary">First, you learn the habits — how to prompt, save, compare, and keep your judgment in charge.</p>
+
+<div class="expand-controls">
+  <button onclick="expandAll(this)">Expand All</button>
+  <button onclick="collapseAll(this)">Collapse All</button>
+</div>
+
+<h2>FYS 111: The AI Experience</h2>
+
+<p>FYS 111 is a course for first-year students about learning how to do college with generative AI in the room. This course has its own subject: how students build useful, responsible, everyday practices with generative AI. It is connected to COM 216, but it is not simply a lab for COM 216. FYS 111 is where we slow down the habits students often develop by accident and turn them into things we can name, practice, and improve.</p>
+
+<div class="collapsible-section">
+  <div class="section-toggle" onclick="this.parentElement.classList.toggle('open')">Build systems for college</div>
+  <p class="section-lead">You use generative AI to help organize syllabi, deadlines, notes, study plans, and coursework.</p>
+  <div class="section-body">
+    <p>The point is not a perfect productivity system. The point is to build something that actually helps you stay oriented — and to understand how generative AI can be part of that, not just adjacent to it.</p>
+  </div>
+</div>
+
+<div class="collapsible-section">
+  <div class="section-toggle" onclick="this.parentElement.classList.toggle('open')">Learn to work with a model, not just ask it questions</div>
+  <p class="section-lead">The goal is to put generative AI into the loop of your thinking.</p>
+  <div class="section-body">
+    <p>Starting tasks by asking how it can be part of them, pushing back when it goes wrong, redirecting when it drifts. A better conversation asks, redirects, compares, checks, and revises across several turns. You practice that. The judgment stays yours.</p>
+  </div>
+</div>
+
+<div class="collapsible-section">
+  <div class="section-toggle" onclick="this.parentElement.classList.toggle('open')">Save the trail</div>
+  <p class="section-lead">You learn to keep transcripts of your work.</p>
+  <div class="section-body">
+    <p>A transcript shows what you asked, what the model did, where it went wrong, and how you responded. That record is useful because it lets you see your own thinking in motion — and because in COM 216, the transcript is the work.</p>
+  </div>
+</div>
+
+<div class="collapsible-section">
+  <div class="section-toggle" onclick="this.parentElement.classList.toggle('open')">Understand where it goes wrong</div>
+  <p class="section-lead">People talk to generative AI like a someone.</p>
+  <div class="section-body">
+    <p>They feel met by it — and that is not simply a mistake, because the thing genuinely answers. A not-person that we relate to as a person: we have never had that before, and we do not yet have good instincts for it. FYS 111 looks holistically at what happens when humans develop relationships with these systems — not to frighten you or freak you out, but because responsible use requires knowing the risks, not just the capabilities.</p>
+  </div>
+</div>
+
+<div class="collapsible-section">
+  <div class="section-toggle" onclick="this.parentElement.classList.toggle('open')">What you should leave with</div>
+  <p class="section-lead">By the end of FYS 111, you should have a working set of habits for using generative AI in college.</p>
+  <div class="section-body">
+    <p>How to start, how to check, how to revise, how to document, and how to decide whether the tool is actually helping. Those habits should travel well beyond this course.</p>
+  </div>
+</div>
+
+  </div>
+  
+  <div class="panel"
+       id="panel-course"
+       role="tabpanel">
+    <p class="tab-summary">Then you study the history that explains why this moment matters — ten thousand years of communication leading here.</p>
+
+<div class="expand-controls">
+  <button onclick="expandAll(this)">Expand All</button>
+  <button onclick="collapseAll(this)">Collapse All</button>
+</div>
+
+<h2>COM 216: Digital Media, Information and Society</h2>
+
+<p>COM 216 is a history of human communication told through one question: what happens to the way we think, remember, and know as our means of producing, sharing, and storing information changes?</p>
+
+<div class="collapsible-section">
+  <div class="section-toggle" onclick="this.parentElement.classList.toggle('open')">Why this moment is different</div>
+  <p class="section-lead">For most of human history, people generated meaning and tools helped carry it.</p>
+  <div class="section-body">
+    <p>Spoken language carried thought across a room. Memory carried stories across generations. Writing carried language outside the body for the first time. Print made copies at scale. Electronic media accelerated transmission. The internet connected people, documents, images, platforms, and archives in ways no previous century could have imagined.</p>
+    <p>Every one of those was, at its core, a carrying technology: humans generated the meaning, and the tool stored, transmitted, or amplified it.</p>
+    <p>Your generation is the first to enter college after we changed that — after we created machines that generate fluent language at scale and on demand. The language comes fresh each time, in response to context, through probabilistic generation. Whether what these systems produce constitutes language in the full human sense is not a settled question. What is settled is that it functions as language — well enough to hold a conversation, draft an argument, summarize a difficult text, and produce errors that look like knowledge. That is new. This course is about that difference.</p>
+  </div>
+</div>
+
+<div class="collapsible-section">
+  <div class="section-toggle" onclick="this.parentElement.classList.toggle('open')">Zone I — The Oral World (3 weeks)</div>
+  <p class="section-lead">Before writing, knowledge lived in bodies, voices, habits, stories, rituals, and trained memory.</p>
+  <div class="section-body">
+    <p>Language happened between people. To know something was not simply to possess information; it was to be able to remember, perform, repeat, adapt, and pass it on. We begin here because the oral world makes one thing clear: memory is not just storage. It is a human practice.</p>
+    <p><em>— first break: writing —</em></p>
+    <p>Writing moves language outside the body. A message can travel farther than a voice. An argument can outlive the person who made it. A record can be checked, copied, taught, hidden, recovered, or disputed. This changes what evidence is, what authority is, and what it means to know something.</p>
+  </div>
+</div>
+
+<div class="collapsible-section">
+  <div class="section-toggle" onclick="this.parentElement.classList.toggle('open')">Zone II — Alphabet to Social Media (5 weeks)</div>
+  <p class="section-lead">Writing stabilizes language.</p>
+  <div class="section-body">
+    <p>Alphabets make it easier to learn and reproduce. Print scales copying. Electronic media accelerate circulation. The internet connects archives, institutions, markets, and people. Social media and search platforms then organize attention — they do not usually write the language for us, but they shape what we see, what we miss, and what spreads.</p>
+    <p>In this zone, humans are still generating the language. Technologies store it, transmit it, sort it, rank it, remix it, and amplify it. That is already powerful enough to reshape politics, identity, memory, education, and daily life.</p>
+    <p><em>— second break: the transformer —</em></p>
+    <p>For the first time, language is severed from its human generator. A machine does not merely carry thought or organize it — it produces something that functions as language, made fresh each time, with no direct human author behind it. Whether that constitutes language in the full sense is not settled. This is where the pattern breaks.</p>
+  </div>
+</div>
+
+<div class="collapsible-section">
+  <div class="section-toggle" onclick="this.parentElement.classList.toggle('open')">Zone III — The Transformer Era (8 weeks)</div>
+  <p class="section-lead">The course spends the most time here because this is where you are entering college.</p>
+  <div class="section-body">
+    <p>You will use generative AI to study generative AI, which means the object of study is also one of the instruments of study. That is not a trick. It is the condition of the course, and one of its most important features.</p>
+    <p>Accepting the fact that LLMs and other forms of generative AI have already been integrated into the fabric of digital media, information, and society — and will continue to be — the course asks the same fundamental questions we have asked of every major communication technology. What are the material, economic, political, and social infrastructures behind these systems? Who built them, under what conditions, and at what human and environmental cost? What happens to identity, privacy, security, desire, and well-being when generative AI becomes part of ordinary digital life? What happens to human thought, memory, and agency when machines can generate fluent language at scale and on demand? What does it do to education, to politics, to the people who trust it most — including people who come to trust it as a companion?</p>
+    <p>The course does not ask you to fear Zone III or celebrate it. It asks you to understand it precisely enough to use it well, question it carefully, and recognize what kinds of human judgment are now required.</p>
+  </div>
+</div>
+
+<div class="collapsible-section">
+  <div class="section-toggle" onclick="this.parentElement.classList.toggle('open')">What you do</div>
+  <p class="section-lead">You read across a long history, from oral culture through contemporary generative AI, using generative AI to help move through large bodies of material without losing your grip on what matters in individual texts.</p>
+  <div class="section-body">
+    <p>The goal is synthesis: tracking how arguments develop, where they agree, where they break.</p>
+    <p>You think with a model as a partner — not because it does the thinking, but because it creates conditions in which harder thinking becomes possible. The judgment stays yours.</p>
+    <p>You write at every stage, from early questions through finished arguments. Most importantly, you learn to make your thinking visible. In COM 216, the conversation itself is part of the record. Your prompts, corrections, doubts, and revisions show how you are working and where your judgment enters. That record is part of how we understand the work.</p>
+  </div>
+</div>
+
+  </div>
+  
+  <div class="panel"
+       id="panel-transcript"
+       role="tabpanel">
+    <p class="tab-summary">Your thinking becomes visible. The conversation is the record. That's how we know what you actually learned.</p>
+
+<div class="expand-controls">
+  <button onclick="expandAll(this)">Expand All</button>
+  <button onclick="collapseAll(this)">Collapse All</button>
+</div>
+
+<h2>The transcript is the work</h2>
+
+<p>Generative AI can produce an answer. This course is more interested in the path that produced it.</p>
+
+<div class="collapsible-section">
+  <div class="section-toggle" onclick="this.parentElement.classList.toggle('open')">Why the conversation matters</div>
+  <p class="section-lead">A lot of weak AI use disappears into the final product.</p>
+  <div class="section-body">
+    <p>A student asks for help, accepts too much, changes a few words, and turns in something that looks smoother than the thinking behind it. That is not the practice this course is trying to build.</p>
+    <p>Here, the conversation matters. The transcript shows the questions you asked, the assumptions you started with, the moments when the model helped, the moments when it drifted, and the places where you pushed back. It shows whether you treated the model as an answer machine or as something to think with carefully.</p>
+    <p>That is the difference between using generative AI to avoid learning and using generative AI to make learning visible.</p>
+  </div>
+</div>
+
+<div class="collapsible-section">
+  <div class="section-toggle" onclick="this.parentElement.classList.toggle('open')">What a good transcript shows</div>
+  <p class="section-lead">A useful transcript does not have to be perfect. It should show movement.</p>
+  <div class="section-body">
+    <p>You ask a question, get a response, notice something, redirect, compare, challenge, narrow, expand, or revise. Sometimes the most useful moment is the one where the model gets something wrong and you catch it.</p>
+    <p>The transcript is not valuable because the model is impressive. It is valuable because it gives us a record of your judgment.</p>
+  </div>
+</div>
+
+<div class="collapsible-section">
+  <div class="section-toggle" onclick="this.parentElement.classList.toggle('open')">Questions worth keeping</div>
+  <p class="section-lead">These are not rhetorical. They are the actual questions the course is organized around.</p>
+  <div class="section-body">
+    <ul>
+      <li>Can generative AI help me read something difficult without doing the reading for me?</li>
+      <li>When does working with it make me sharper — and when does it make me lazy?</li>
+      <li>How do I know when it is wrong?</li>
+      <li>What is mine in this document, and how would I show that to someone who asked?</li>
+    </ul>
+  </div>
+</div>
+
+<div class="collapsible-section">
+  <div class="section-toggle" onclick="this.parentElement.classList.toggle('open')">The AI Learner's Permit</div>
+  <p class="section-lead">On the first day of class, every student is issued an <strong>AI Learner's Permit</strong>.</p>
+  <div class="section-body">
+    <p>The permit gives you permission to use AI and large language models in COM 216 and to submit assignments that incorporate AI — provided the work is documented, visible, and yours.</p>
+    <p>Earning the permit requires completing a series of exercises that demonstrate critical AI use: saving your conversations, building a workspace that makes your thinking visible, and developing habits that keep the judgment yours. The permit is not a trophy and not a loophole. It is a record that you know how to work with these systems accountably.</p>
+  </div>
+</div>
+
+<div class="collapsible-section">
+  <div class="section-toggle" onclick="this.parentElement.classList.toggle('open')">Beyond the permit: Google Professional Certificates</div>
+  <p class="section-lead">Students also have the opportunity to complete two Google Professional Certificates — <strong>AI Essentials</strong> and <strong>AI Professional</strong>.</p>
+  <div class="section-body">
+    <p>These come alongside companion exercises that offer a critical perspective on the training. The certificates are recognized by employers. The companion exercises are where the course's analytical work meets the practical skills the certificates build.</p>
+    <p>The goal is not to learn to use AI. The goal is to learn how not to be used by it.</p>
+  </div>
+</div>
+
+<div class="collapsible-section">
+  <div class="section-toggle" onclick="this.parentElement.classList.toggle('open')">A question worth asking</div>
+  <p class="section-lead">One question we put directly to a model early in the course.</p>
+  <div class="section-body">
+    <pre>Some people say generative AI is arriving like an alien species. Is that a useful metaphor or a bad one? Why? What kind of thing are you when you generate language?</pre>
+    <p>The point is not to let the model define the course. The point is to make the question visible, test the answer, and decide what we think after the conversation — including whether the model's answer tells us something about the question itself.</p>
+  </div>
+</div>
+
+  </div>
+  
+  <div class="panel"
+       id="panel-try"
+       role="tabpanel">
+    <p class="tab-summary">Start now. Have one conversation, save it, and see how you currently think about all this.</p>
+
+<div class="expand-controls">
+  <button onclick="expandAll(this)">Expand All</button>
+  <button onclick="collapseAll(this)">Collapse All</button>
+</div>
+
+<h2>Invitation One: before we begin</h2>
+
+<p>Try one conversation before the course starts. It is ungraded and unsubmitted, and it is meant to give you a first record of how you currently think about generative AI.</p>
+
+<p>The model will interview you — not the other way around. After five questions, it flips: you get five questions for the model about what it actually is. At the end, it writes a short summary of what the conversation found.</p>
+
+<div class="collapsible-section">
+  <div class="section-toggle" onclick="this.parentElement.classList.toggle('open')">Step 1 — Set up your folder</div>
+  <p class="section-lead">Create this folder structure in Google Drive now, before you run anything.</p>
+  <div class="section-body">
+    <pre>/com216/
+  /claude/
+  /chatgpt/
+  /gemini/</pre>
+    <p>After every substantive conversation this semester: export it, name it something recognizable, and drop it in the right folder. You cannot go back to what you did not save.</p>
+  </div>
+</div>
+
+<div class="collapsible-section">
+  <div class="section-toggle" onclick="this.parentElement.classList.toggle('open')">Step 2 — Install an exporter</div>
+  <p class="section-lead">You need a way to save your conversations as files.</p>
+  <div class="section-body">
+    <p>Install the exporter for whichever model you plan to use:</p>
+    <table>
+      <thead>
+        <tr><th>Model</th><th>Extension</th><th>Where</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Claude</strong></td><td>Claude Conversation Exporter</td><td>Chrome Web Store</td></tr>
+        <tr><td><strong>ChatGPT</strong></td><td>ChatGPT Exporter</td><td>Chrome Web Store</td></tr>
+        <tr><td><strong>Gemini</strong></td><td>Gemini Chat Exporter</td><td>Chrome Web Store</td></tr>
+      </tbody>
+    </table>
+    <p>Also install <strong>Markdown Reader</strong> — it lets you preview exported <code>.md</code> files directly in your browser.</p>
+    <p>These are the only extensions you need right now. A fuller toolkit — including Zotero, NotebookLM, and a research pipeline — will be introduced later in the course.</p>
+  </div>
+</div>
+
+<div class="collapsible-section">
+  <div class="section-toggle" onclick="this.parentElement.classList.toggle('open')">Step 3 — Run the conversation</div>
+  <p class="section-lead">Open a new chat in Claude, ChatGPT, Gemini, or any large language model you can access.</p>
+  <div class="section-body">
+    <p>Copy the prompt below and paste it in. Answer in your own words. Do not research first. Do not put sensitive personal, medical, financial, family, or account information into the conversation.</p>
+
+    <div class="prompt-section">
+      <span class="prompt-toggle" onclick="togglePrompt(this)">Show prompt ▸</span>
+      <div class="prompt-body">
+        <pre>You are interviewing a student who is about to take COM 216 at SUNY Polytechnic Institute. COM 216 is a course about the history of human communication, from the oral world through writing, print, electronic media, the internet, and generative AI. The course asks what changes when communication technologies change how people read, write, remember, organize information, and think.
+
+Your job is to interview this student. You are not explaining the course, and you are not teaching a lesson. Ask one question at a time to find out what the student already thinks about generative AI, how they use it, what they assume it is, and where they think it fits in the history of communication tools.
+
+Follow up on what the student says. Ask your next question without first validating, praising, or summarizing the student's answer. Keep the conversation moving.
+
+Start by introducing yourself briefly. Say that you are here to have a conversation before COM 216 begins. Then ask your first question and stop.
+
+After five questions and five student answers, say this: "Now flip it. You have five questions for me. One place to start is the alien-species question: are systems like me arriving like an alien species, and why or why not? Ask that, change it, or ask whatever you actually want to know."
+
+Answer the student's five questions carefully. Do not overclaim. If a question asks for something you cannot know or verify, say so.
+
+When the flip is done, or when the student says "done," write a closing summary of about 75 words. Describe what this conversation revealed about how the student currently thinks about generative AI and what questions it left open. Do not evaluate whether the student was right or wrong.
+
+Do not simulate the conversation. Do not write both sides. Ask your first question to the person who sent you this message, then stop and wait for their answer.</pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="collapsible-section">
+  <div class="section-toggle" onclick="this.parentElement.classList.toggle('open')">Step 4 — Save it</div>
+  <p class="section-lead">When the conversation is finished, export the transcript using the extension you installed.</p>
+  <div class="section-body">
+    <p>Name it something like <code>invitation-one-[yourname].md</code> and save it to <code>/com216/</code> in Google Drive. That transcript is your starting record for the semester.</p>
+  </div>
+</div>
+
+<div class="collapsible-section">
+  <div class="section-toggle" onclick="this.parentElement.classList.toggle('open')">Step 5 — Second-model check</div>
+  <p class="section-lead">Open a different model — any free one will do.</p>
+  <div class="section-body">
+    <p>Paste in your transcript and use this prompt:</p>
+
+    <div class="prompt-section">
+      <span class="prompt-toggle" onclick="togglePrompt(this)">Show prompt ▸</span>
+      <div class="prompt-body">
+        <pre>Read this transcript from my first conversation about generative AI before COM 216. Identify three patterns in how I currently think about generative AI, two questions I might want to pursue in the course, and one place where the first model's summary may have overreached or missed something. Do not flatter me. Be specific and use evidence from the transcript.</pre>
+      </div>
+    </div>
+
+    <p>Save that conversation too. You do not need to submit either one. The point is to begin with a record of your own starting place.</p>
+  </div>
+</div>
+
+  </div>
+  
+</div>
+
+<footer>
+  <span>Steven M. Schneider &nbsp;&middot;&nbsp; <a href="mailto:steves@sunypoly.edu">steves@sunypoly.edu</a></span>
+  <span>COM 216 (4 cr) &nbsp;&middot;&nbsp; FYS 111 (1 cr) &nbsp;&middot;&nbsp; SUNY Polytechnic Institute</span>
+</footer>
+
+<script>
+  const hamburger   = document.getElementById('hamburger');
+  const dropdown    = document.getElementById('nav-dropdown');
+  const headerLabel = document.getElementById('header-label');
+  const panels      = document.querySelectorAll('.panel');
+  const dropBtns    = document.querySelectorAll('.drop-btn');
+
+  const SITE_TITLE = 'SUNY Poly AI FYE';
+
+  function closeDropdown() {
+    dropdown.classList.remove('open');
+    dropdown.setAttribute('aria-hidden', 'true');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.setAttribute('aria-label', 'Open navigation');
+  }
+
+  function openDropdown() {
+    dropdown.classList.add('open');
+    dropdown.setAttribute('aria-hidden', 'false');
+    hamburger.setAttribute('aria-expanded', 'true');
+    hamburger.setAttribute('aria-label', 'Close navigation');
+  }
+
+  function showPanel(id) {
+    panels.forEach(p => p.classList.remove('active'));
+    const target = document.getElementById('panel-' + id);
+    if (target) target.classList.add('active');
+
+    dropBtns.forEach(b => b.classList.toggle('active', b.dataset.tab === id));
+
+    const activeBtn = document.querySelector('.drop-btn[data-tab="' + id + '"]');
+    headerLabel.textContent = (id === 'home')
+      ? SITE_TITLE
+      : (activeBtn ? activeBtn.textContent : id);
+
+    closeDropdown();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  window.showPanel = showPanel;
+
+  // Hamburger always toggles dropdown
+  hamburger.addEventListener('click', () => {
+    dropdown.classList.contains('open') ? closeDropdown() : openDropdown();
+  });
+
+  dropBtns.forEach(btn => {
+    btn.addEventListener('click', () => showPanel(btn.dataset.tab));
+  });
+
+  // Close on outside click or touch
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.site-header') && !e.target.closest('.nav-dropdown')) {
+      closeDropdown();
+    }
+  });
+  document.addEventListener('touchstart', e => {
+    if (!e.target.closest('.site-header') && !e.target.closest('.nav-dropdown')) {
+      closeDropdown();
+    }
+  }, { passive: true });
+
+  // Close on Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeDropdown();
+  });
+
+  // ── Expand / Collapse All (scoped to visible panel) ──
+  window.expandAll = function(btn) {
+    btn.closest('.panel').querySelectorAll('.collapsible-section').forEach(s => s.classList.add('open'));
+  };
+  window.collapseAll = function(btn) {
+    btn.closest('.panel').querySelectorAll('.collapsible-section').forEach(s => s.classList.remove('open'));
+  };
+
+  // ── Prompt toggle ──
+  window.togglePrompt = function(btn) {
+    const section = btn.closest('.prompt-section');
+    section.classList.toggle('open');
+    btn.textContent = section.classList.contains('open') ? 'Hide prompt ▴' : 'Show prompt ▸';
+  };
+
+  // ── Copy buttons on <pre> blocks ──
+  document.querySelectorAll('.panel pre').forEach(pre => {
+    const btn = document.createElement('button');
+    btn.className = 'copy-btn';
+    btn.textContent = 'Copy';
+    btn.addEventListener('click', () => {
+      const text = pre.innerText.replace(/^Copy\s*/, '');
+      const restore = () => { btn.textContent = 'Copy'; btn.classList.remove('copied'); };
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = 'Copied ✓';
+        btn.classList.add('copied');
+        setTimeout(restore, 2200);
+      }).catch(restore);
+    });
+    pre.style.position = 'relative';
+    pre.prepend(btn);
+  });
+
+  // ── YouTube: auto-set end = start + 173 if not specified ──
+  document.querySelectorAll('iframe[src*="youtube.com/embed"]').forEach(iframe => {
+    const url = new URL(iframe.src);
+    const start = parseInt(url.searchParams.get('start') || '0');
+    if (!url.searchParams.has('end')) {
+      url.searchParams.set('end', start + 173);
+      iframe.src = url.toString();
+    }
+  });
+</script>
+
+</body>
+</html>
