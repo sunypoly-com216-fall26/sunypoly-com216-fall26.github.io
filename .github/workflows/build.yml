@@ -1,0 +1,68 @@
+name: Build and deploy site
+
+# Builds on content changes to main. Deliberately does NOT list docs/ or
+# any generated path, so a deploy can never retrigger this workflow.
+on:
+  push:
+    branches: [main]
+    paths:
+      - '_tabs*/**'          # covers _tabs1, _tabs11, _tabs2, _tabs3
+      - '_conversations/**'
+      - '_layouts/**'
+      - '_bib/**'
+      - 'index.html'
+      - '_config.yml'
+      - 'Gemfile'
+      - 'Gemfile.lock'
+      - '.ruby-version'
+      - '.github/workflows/build.yml'
+  workflow_dispatch:          # lets you trigger a rebuild by hand
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Reads .ruby-version and Gemfile.lock from the repo, so CI uses the
+      # exact Ruby and gems pinned locally. SHA-pinned rather than @v1 so a
+      # moved tag can't swap in different code.
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@4a9ddd6f338a97768b8006bf671dfbad383215f4 # v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Build
+        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+        env:
+          JEKYLL_ENV: production
+
+      # Defaults to ./_site, which is where a plain `jekyll build` writes.
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
