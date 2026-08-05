@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Build the site to docs/ for GitHub Pages ("deploy from a branch" + /docs).
+# Preview builds go to _site/ (gitignored); this is the only thing that
+# writes docs/, so preview churn never touches tracked files.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+JEKYLL_ENV=production bundle exec jekyll build --destination docs
+
+# Tells Pages to serve these files as-is instead of running its own Jekyll.
+# Re-created each run because jekyll cleans the destination directory.
+touch docs/.nojekyll
+
+echo
+echo "Built to docs/ — $(find docs -type f | wc -l | tr -d ' ') files"
