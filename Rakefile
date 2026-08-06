@@ -1,23 +1,21 @@
-# Project tasks.  Run `rake -T` to list them.
+# Optional local development tasks. Run `rake -T` to list them.
+#
+# NONE of these publish anything. Publishing happens automatically: push to
+# `main` and GitHub Actions builds and deploys. See SETUP.md.
 
-DEV  = "_config.yml"
-PROD = "_config.yml,_config_prod.yml"
-
-desc "Preview at http://127.0.0.1:4000 with live reload (builds to _site/)"
+desc "Preview at http://127.0.0.1:4000 with live reload"
 task :preview do
-  sh "bundle exec jekyll serve --livereload --config #{DEV}"
+  sh "bundle exec jekyll serve --livereload"
 end
 
-desc "Build the production site into docs/ for GitHub Pages"
-task :publish do
-  sh "JEKYLL_ENV=production bundle exec jekyll build --config #{PROD}"
-  puts "\nBuilt to docs/ — #{Dir.glob('docs/**/*').count { |f| File.file?(f) }} files"
+desc "Run the same production build CI runs, to catch errors early (output: _site/)"
+task :build do
+  sh "JEKYLL_ENV=production bundle exec jekyll build"
 end
 
-desc "Delete build output (_site/ and docs/)"
+desc "Delete local build output (_site/)"
 task :clean do
-  sh "bundle exec jekyll clean --config #{DEV}"
-  sh "bundle exec jekyll clean --config #{PROD}"
+  sh "bundle exec jekyll clean"
 end
 
-task default: :publish
+task default: :preview
