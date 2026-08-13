@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       # Reads .ruby-version and Gemfile.lock from the repo, so CI uses the
       # exact Ruby and gems pinned locally. SHA-pinned rather than @v1 so a
