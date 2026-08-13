@@ -61,7 +61,7 @@ jobs:
 
       # Defaults to ./_site, which is where a plain `jekyll build` writes.
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
 
   deploy:
     needs: build
