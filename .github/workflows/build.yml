@@ -41,7 +41,7 @@ jobs:
       # bumped when a new Ruby is adopted, since the action's known-version
       # list is baked into the pinned commit. Dependabot handles that.
       - name: Set up Ruby
-        uses: ruby/setup-ruby@afeafc3d1ab54a631816aba4c914a0081c12ff2f # v1 (2026-05-20)
+        uses: ruby/setup-ruby@a0102e0972be65f351c307e2d64b9314a57c8073 # v1 (2026-05-20)
         with:
           # Minor-only: resolves to the newest 3.4.x this action knows.
           # NOT .ruby-version -- that file pins 3.4.10, a patch release newer
